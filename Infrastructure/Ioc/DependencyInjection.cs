@@ -38,6 +38,7 @@ namespace Infrastructure.Ioc
             services.AddScoped<IFaqRepository, FaqRepository>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<ISizeRepository, SizeRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();
