@@ -1,47 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using Application.Interfaces;
+using Domain.Constants;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using static Domain.Constants.Constants;
 
 namespace Web.Controllers
 {
-    public class FaqController : Controller
+    public class BrandController : Controller
     {
-        private readonly IFaqService faqService;
+        private readonly IBrandService brandService;
 
-        public FaqController(IFaqService faqService)
+        public BrandController(IBrandService brandService)
         {
-            this.faqService = faqService;
+            this.brandService = brandService;
         }
-
-        public IActionResult Faq()
-        {
-            List<Faq> faqs = null;
-            try
-            {
-                faqs = faqService.GetFags(StatusCodes.Active);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            return View(faqs);
-        }
-
+        
         [HttpGet]
-        public IActionResult CreateFaq()
+        public IActionResult CreateBrand()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateFaq(Faq faq)
+        public IActionResult CreateBrand(Brand brand)
         {
             if (ModelState.IsValid)
             {
-                faqService.AddFaq(faq);
+                brandService.AddBrand(brand);
                 TempData["AlertType"] = ActionTypes.Create.ToString();
             }
             else
@@ -50,56 +37,56 @@ namespace Web.Controllers
                 TempData["AlertType"] = ActionTypes.Error.ToString();
             }
 
-            if (faq.Id > 0)
+            if (brand.Id > 0)
             {
-                return RedirectToAction("ListFaqs", "Faq");
+                return RedirectToAction("ListBrand", "Brand");
             }
             else
             {
-                return View(faq);
+                return View(brand);
             }
         }
-        
-        public ActionResult DeleteFaq(int Id)
+
+        public ActionResult DeleteBrand(int Id)
         {
-            Faq faq = null;
+            Brand brand = null;
             try
             {
-                faq = faqService.GetFaq(Id);
-                faq.Status = 0;
-                faqService.UpdateFaq(faq);
+                brand = brandService.GetBrand(Id);
+                brand.Status = 0;
+                brandService.UpdateBrand(brand);
                 TempData["AlertType"] = ActionTypes.Delete.ToString();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
-            return RedirectToAction("ListFaqs", "Faq");
+            return RedirectToAction("ListBrand", "Brand");
         }
 
         [HttpGet]
-        public IActionResult UpdateFaq(int Id)
+        public IActionResult UpdateBrand(int Id)
         {
-            Faq faq = null;
+            Brand brand = null;
             try
             {
-                faq = faqService.GetFaq(Id);
+                brand = brandService.GetBrand(Id);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
-            return View(faq);
+            return View(brand);
         }
 
         [HttpPost]
-        public IActionResult UpdateFaq(Faq faq)
+        public IActionResult UpdateBrand(Brand brand)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    faq = faqService.UpdateFaq(faq);
+                    brand = brandService.UpdateBrand(brand);
                     TempData["AlertType"] = ActionTypes.Update.ToString();
                 }
                 else
@@ -115,28 +102,28 @@ namespace Web.Controllers
 
             if (ViewBag.IsModelStateValid == null)
             {
-                return RedirectToAction("ListFaqs", "Faq");
+                return RedirectToAction("ListBrand", "Brand");
             }
             else
             {
-                return View(faq);
+                return View(brand);
             }
         }
 
         [HttpGet]
-        public IActionResult ListFaqs()
+        public IActionResult ListBrand()
         {
-            List<Faq> faqs = null;
+            List<Brand> brands = null;
             try
             {
-                faqs = faqService.GetFags();
+                brands = brandService.GetBrands();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            return View(faqs);
+            return View(brands);
         }
     }
 }
