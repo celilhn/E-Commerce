@@ -3,13 +3,19 @@ using Application.Models;
 using Application.Utilities;
 using Application.Logging;
 using Application.Mapping;
+using Application.Services;
+using Application.ValidationRules.FluentValidation.Brand;
+using Application.ValidationRules.FluentValidation.Faq;
 using AutoMapper;
+using Domain.Interfaces;
+using Domain.Models;
 using Infrastructure.Context;
 using Infrastructure.Notifications;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
+using Infrastructure.Repositories;
 
 namespace Infrastructure.Ioc
 {
@@ -19,16 +25,22 @@ namespace Infrastructure.Ioc
         {
             Configuration configuration = _configuration.Get<Configuration>();
             services.AddSingleton(configuration);
-            services.AddDbContext<MTriggerDbContext>(options => options.UseSqlServer(
+            services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServer(
                 configuration.DBConnectionText,
-                b => b.MigrationsAssembly(typeof(MTriggerDbContext).Assembly.FullName)));
+                b => b.MigrationsAssembly(typeof(ECommerceDbContext).Assembly.FullName)));
 
             /* Services & Repositories */
             services.AddScoped<IHttpUtilities, HttpUtilities>();
             services.AddScoped<ILoggerManager, LoggerManager>();
             services.AddScoped<IApiLogger, ApiLogger>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IFaqService, FaqService>();
+            services.AddScoped<IFaqRepository, FaqRepository>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<IBrandRepository, BrandRepository>();
 
+            services.AddScoped<IValidator<Faq>, FaqValidator>();
+            services.AddScoped<IValidator<Brand>, BrandValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

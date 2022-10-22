@@ -1,17 +1,19 @@
-﻿using Infrastructure.Configurations;
+﻿using Domain.Models;
+using Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
-using static Domain.Constants.Constants;
 
 namespace Infrastructure.Context
 {
-    public class MTriggerDbContext : DbContext
+    public class ECommerceDbContext : DbContext
     {
-        public MTriggerDbContext(DbContextOptions<MTriggerDbContext> options) :
+        public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options) :
             base(options)
         {
             
         }
-        
+
+        public DbSet<Faq> Faqs { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,6 +25,8 @@ namespace Infrastructure.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.ApplyConfiguration(new FaqConfigurations());
+            modelBuilder.ApplyConfiguration(new BrandConfigurations());
         }
     }
 }
