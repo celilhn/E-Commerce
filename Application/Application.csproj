@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Filters\" />
-    <Folder Include="ValidationRules\FluentValidation\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 

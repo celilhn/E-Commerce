@@ -1,4 +1,4 @@
-﻿@RenderBody()
+﻿@using static Domain.Constants.Constants;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +12,17 @@
     <link rel="shortcut icon" href="~/Panel/assets/images/favicon.ico">
 
     <link href="~/Panel/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
+    
     <link href="~/Panel/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="~/Panel/assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
     <link href="~/Panel/assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="~/Panel/assets/css/style.css" rel="stylesheet" type="text/css">
+    <!-- DataTables -->
+    <link href="~/Panel/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Panel/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="~/Panel/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -382,7 +388,7 @@
                                     <li><a href="charts-other.html">Jquery Knob Chart</a></li>
                                 </ul>
                             </li>
-
+                            
                             <li class="has-submenu">
                                 <a href="#"><i class="dripicons-to-do"></i> Pages</a>
                                 <ul class="submenu megamenu">
@@ -408,6 +414,14 @@
                                             <li><a href="pages-500.html">Error 500</a></li>
                                         </ul>
                                     </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="has-submenu">
+                                <a href="#"><i class="dripicons-to-do"></i>Faq Management </a>
+                                <ul class="submenu">
+                                    <li><a asp-controller="Faq" asp-action="CreateFaq">Create Faq</a></li>
+                                    <li><a asp-controller="Faq" asp-action="ListFaqs">List Faqs</a></li>
                                 </ul>
                             </li>
 
@@ -451,7 +465,70 @@
 
     <!-- App js -->
     <script src="~/Panel/assets/js/app.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <!-- Required datatable js -->
+    <script src="~/Panel/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="~/Panel/assets/plugins/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/jszip.min.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/pdfmake.min.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/vfs_fonts.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/buttons.html5.min.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/buttons.print.min.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/buttons.colVis.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="~/Panel/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/Panel/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
 
+    <!-- Datatable init js -->
+    <script src="~/Panel/assets/pages/datatables.init.js"></script>
+
+    @if (TempData["AlertType"] != null)
+    {
+        @if (TempData["AlertType"].ToString() == ActionTypes.Create.ToString())
+        {
+            <script>
+                swal({
+                    title: "Registration successful!",
+                    text: "",
+                    icon: "success"
+                });
+            </script>
+        }
+        else if (TempData["AlertType"].ToString() == ActionTypes.Update.ToString())
+        {
+            <script>
+                swal({
+                    title: "Update process successful!",
+                    text: "",
+                    icon: "success"
+                });
+            </script>
+        } 
+        else if (TempData["AlertType"].ToString() == ActionTypes.Delete.ToString())
+        {
+            <script>
+                swal({
+                    title: "Delete process successful!",
+                    text: "",
+                    icon: "success"
+                });
+            </script>
+        } 
+        else if (TempData["AlertType"].ToString() == ActionTypes.Error.ToString())
+        {
+            <script>
+                swal({
+                    title: "Incorrect operation!",
+                    text: "",
+                    icon: "error"
+                });
+            </script>
+        }
+    }
 </body>
 
 </html>
