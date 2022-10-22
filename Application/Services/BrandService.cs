@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Models;
@@ -26,6 +27,7 @@ namespace Application.Services
 
         public Brand UpdateBrand(Brand brand)
         {
+            brand.UpdateDate = DateTime.Now;
             return brandRepository.UpdateBrand(brand);
         }
 

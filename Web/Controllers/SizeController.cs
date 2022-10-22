@@ -7,43 +7,29 @@ using static Domain.Constants.Constants;
 
 namespace Web.Controllers
 {
-    public class FaqController : Controller
+    public class SizeController : Controller
     {
-        private readonly IFaqService faqService;
+        private readonly ISizeService sizeService;
 
-        public FaqController(IFaqService faqService)
+        public SizeController(ISizeService sizeService)
         {
-            this.faqService = faqService;
-        }
-
-        public IActionResult Faq()
-        {
-            List<Faq> faqs = null;
-            try
-            {
-                faqs = faqService.GetFags(StatusCodes.Active);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            return View(faqs);
+            this.sizeService = sizeService;
         }
 
         [HttpGet]
-        public IActionResult CreateFaq()
+        public IActionResult CreateSize()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateFaq(Faq faq)
+        public IActionResult CreateSize(Size size)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    faqService.AddFaq(faq);
+                    sizeService.AddSize(size);
                     TempData["AlertType"] = ActionTypes.Create.ToString();
                 }
                 else
@@ -57,24 +43,24 @@ namespace Web.Controllers
                 Console.WriteLine(ex);
             }
 
-            if (faq.Id > 0)
+            if (size.Id > 0)
             {
-                return RedirectToAction("ListFaqs", "Faq");
+                return RedirectToAction("ListSize", "Size");
             }
             else
             {
-                return View(faq);
+                return View(size);
             }
         }
-        
-        public ActionResult DeleteFaq(int Id)
+
+        public ActionResult DeleteSize(int Id)
         {
-            Faq faq = null;
+            Size size = null;
             try
             {
-                faq = faqService.GetFaq(Id);
-                faq.Status = 0;
-                faqService.UpdateFaq(faq);
+                size = sizeService.GetSize(Id);
+                size.Status = 0;
+                sizeService.UpdateSize(size);
                 TempData["AlertType"] = ActionTypes.Delete.ToString();
             }
             catch (Exception ex)
@@ -82,41 +68,41 @@ namespace Web.Controllers
                 TempData["AlertType"] = ActionTypes.Error.ToString();
                 Console.WriteLine(ex);
             }
-            return RedirectToAction("ListFaqs", "Faq");
+            return RedirectToAction("ListSize", "Size");
         }
 
         [HttpGet]
-        public IActionResult UpdateFaq(int Id)
+        public IActionResult UpdateSize(int Id)
         {
-            Faq faq = null;
+            Size size = null;
             try
             {
-                faq = faqService.GetFaq(Id);
+                size = sizeService.GetSize(Id);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
 
-            if (faq == null)
+            if (size == null)
             {
                 TempData["AlertType"] = ActionTypes.Error.ToString();
-                return RedirectToAction("ListFaqs", "Faq");
+                return RedirectToAction("ListSize", "Size");
             }
             else
             {
-                return View(faq);
+                return View(size);
             }
         }
 
         [HttpPost]
-        public IActionResult UpdateFaq(Faq faq)
+        public IActionResult UpdateSize(Size size)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    faq = faqService.UpdateFaq(faq);
+                    size = sizeService.UpdateSize(size);
                     TempData["AlertType"] = ActionTypes.Update.ToString();
                 }
                 else
@@ -132,28 +118,27 @@ namespace Web.Controllers
 
             if (ViewBag.IsModelStateValid == null)
             {
-                return RedirectToAction("ListFaqs", "Faq");
+                return RedirectToAction("ListSize", "Size");
             }
             else
             {
-                return View(faq);
+                return View(size);
             }
         }
 
         [HttpGet]
-        public IActionResult ListFaqs()
+        public IActionResult ListSize()
         {
-            List<Faq> faqs = null;
+            List<Size> size = null;
             try
             {
-                faqs = faqService.GetFags();
+                size = sizeService.GetSizes();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
             }
-            return View(faqs);
+            return View(size);
         }
     }
 }

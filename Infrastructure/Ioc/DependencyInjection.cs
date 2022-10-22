@@ -6,6 +6,7 @@ using Application.Mapping;
 using Application.Services;
 using Application.ValidationRules.FluentValidation.Brand;
 using Application.ValidationRules.FluentValidation.Faq;
+using Application.ValidationRules.FluentValidation.Size;
 using AutoMapper;
 using Domain.Interfaces;
 using Domain.Models;
@@ -38,10 +39,12 @@ namespace Infrastructure.Ioc
             services.AddScoped<IFaqRepository, FaqRepository>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<ISizeService, SizeService>();
             services.AddScoped<ISizeRepository, SizeRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();
+            services.AddScoped<IValidator<Size>, SizeValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
