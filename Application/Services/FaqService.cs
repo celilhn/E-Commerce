@@ -6,7 +6,7 @@ using static Domain.Constants.Constants;
 
 namespace Application.Services
 {
-    public  class FaqService : IFaqService
+    public class FaqService : IFaqService
     {
         private readonly IFaqRepository faqRepository;
         public FaqService(IFaqRepository faqRepository)
