@@ -1,8 +1,8 @@
 ﻿@using Domain.Models
 @using static Domain.Constants.Constants
-@model List<Domain.Models.Brand>
+@model List<Domain.Models.Size>
 @{
-    ViewData["Title"] = "ListBrand";
+    ViewData["Title"] = "ListSize";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
 }
 
@@ -24,27 +24,27 @@
                                 <th>Kayıt Tarihi</th>
                                 <th>Güncelleme Tarihi</th>
                                 <th>Durumu</th>
-                                <th>Marka</th>
+                                <th>Size</th>
                                 <th>Sil</th>
                                 <th>Güncelle</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (Brand brand in Model)
+                            @foreach (Size size in Model)
                             {
                                 <tr>
-                                    <td>@brand.Id</td>
-                                    <td>@brand.InsertionDate</td>
-                                    <td>@brand.UpdateDate</td>
-                                    <td>@brand.Status</td>
-                                    <td>@brand.Name</td>
+                                    <td>@size.Id</td>
+                                    <td>@size.InsertionDate</td>
+                                    <td>@size.UpdateDate</td>
+                                    <td>@size.Status</td>
+                                    <td>@size.Name</td>
                                     <th>
-                                        @if (brand.Status == StatusCodes.Active)
+                                        @if (size.Status == StatusCodes.Active)
                                         {
-                                            <a asp-controller="Brand" asp-action="DeleteBrand" asp-route-Id="@brand.Id"><i class="dripicons-document-delete"></i></a>
+                                            <a asp-controller="Size" asp-action="DeleteSize" asp-route-Id="@size.Id"><i class="dripicons-document-delete"></i></a>
                                         }
                                     </th>
-                                    <th><a asp-controller="Brand" asp-action="UpdateBrand" asp-route-Id="@brand.Id"><i class="fas fa-edit"></i></a></th> 
+                                    <th><a asp-controller="Size" asp-action="UpdateSize" asp-route-Id="@size.Id"><i class="fas fa-edit"></i></a></th> 
                                 </tr>
                             }
                         </tbody>

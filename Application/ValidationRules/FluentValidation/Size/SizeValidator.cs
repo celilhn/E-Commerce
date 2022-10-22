@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
 
-namespace Application.ValidationRules.FluentValidation.Brand
+namespace Application.ValidationRules.FluentValidation.Size
 {
-    public class BrandValidator : AbstractValidator<Domain.Models.Brand>
+    public class SizeValidator : AbstractValidator<Domain.Models.Size>
     {
-        public BrandValidator()
+        public SizeValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .WithMessage("İsim alanı zorunludur.")
-                .Length(1, 80)
+                .Length(1, 10)
                 .WithMessage("Karakter uzunluğu 80'den fazla olamaz!");
         }
     }
