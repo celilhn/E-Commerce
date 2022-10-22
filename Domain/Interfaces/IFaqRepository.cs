@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Domain.Models;
+using static Domain.Constants.Constants;
 
 namespace Domain.Interfaces
 {
@@ -9,6 +10,6 @@ namespace Domain.Interfaces
         Faq UpdateFaq(Faq faq);
         Faq GetFaq(int Id);
         List<Faq> GetFags();
-        List<Faq> GetFags(Constants.Constants.StatusCodes status);
+        List<Faq> GetFags(StatusCodes status);
     }
 }

@@ -1,0 +1,89 @@
+﻿@using Domain.Models
+@model List<Domain.Models.Faq>
+@{
+    ViewData["Title"] = "Faq";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <!-- Breadcrumb Section Start -->
+    <div class="section">
+
+        <!-- Breadcrumb Area Start -->
+        <div class="breadcrumb-area bg-light">
+            <div class="container-fluid">
+                <div class="breadcrumb-content text-center">
+                    <h1 class="title">Sıkça Sorulanlar</h1>
+                    <ul>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Anasayfa </a>
+                        </li>
+                        <li class="active"> Sıkça Sorulanlar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb Area End -->
+
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Faq Section Start -->
+    <div class="section section-margin">
+
+        <!-- Faq Content Start  -->
+        <div class="faq_content_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="faq_content_wrapper" data-aos="fade-up" data-aos-delay="300">
+                            <h4 class="title">Aşağıda sıkça sorulan sorular bulunmaktadır, cevabını kendiniz bulabilirsiniz.</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id erat sagittis, faucibus metus malesuada, eleifend turpis. Mauris semper augue id nisl aliquet, a porta lectus mattis. Nulla at tortor augue. In eget enim diam. Donec gravida tortor sem, ac fermentum nibh rutrum sit amet. Nulla convallis mauris vitae congue consequat. Donec interdum nunc purus, vitae vulputate arcu fringilla quis. Vivamus iaculis euismod dui.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Faq Content End -->
+
+
+        <!--Accordion area-->
+        <div class="accordion_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="accordionExample" class="accordion mb-n4">
+                            @{
+                                int delay = 0;
+                                foreach (Faq faq in Model)
+                                {
+                                    delay = delay + 100;
+                                    <div class="card_dipult accordion-item mb-4" data-aos="fade-up" data-aos-delay="delay">
+                                        <div class="card-header card_accor" id="heading_@faq.Id">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapse_@faq.Id" aria-expanded="false" aria-controls="collapse_@faq.Id">
+                                                @faq.Question
+                                                <i class="fa fa-plus"></i>
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <div id="collapse_@faq.Id" class="collapse accordion-collapse border-0" aria-labelledby="heading_@faq.Id" data-bs-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p>@faq.Answer</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Accordion area end-->
+
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    <!-- Faq Section End -->
+
