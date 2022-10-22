@@ -4,6 +4,7 @@ using Application.Utilities;
 using Application.Logging;
 using Application.Mapping;
 using Application.Services;
+using Application.ValidationRules.FluentValidation.Brand;
 using Application.ValidationRules.FluentValidation.Faq;
 using AutoMapper;
 using Domain.Interfaces;
@@ -35,8 +36,11 @@ namespace Infrastructure.Ioc
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IFaqService, FaqService>();
             services.AddScoped<IFaqRepository, FaqRepository>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<IBrandRepository, BrandRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
+            services.AddScoped<IValidator<Brand>, BrandValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

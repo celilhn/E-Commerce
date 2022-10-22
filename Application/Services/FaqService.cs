@@ -14,6 +14,7 @@ namespace Application.Services
         {
             this.faqRepository = faqRepository;
         }
+
         public Faq AddFaq(Faq faq)
         {
             return faqRepository.AddFaq(faq);

@@ -13,6 +13,7 @@ namespace Infrastructure.Context
         }
 
         public DbSet<Faq> Faqs { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,6 +26,7 @@ namespace Infrastructure.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new FaqConfigurations());
+            modelBuilder.ApplyConfiguration(new BrandConfigurations());
         }
     }
 }
