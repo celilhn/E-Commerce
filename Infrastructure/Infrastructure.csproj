@@ -32,8 +32,6 @@
 
   <ItemGroup>
     <Folder Include="ActionServices\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

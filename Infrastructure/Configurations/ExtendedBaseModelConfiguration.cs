@@ -12,8 +12,8 @@ namespace Infrastructure.Configurations
     {
         public virtual void Configure(EntityTypeBuilder<Model> builder)
         {
-            builder.HasKey(x => x.ID);
-            builder.Property(x => x.ID).UseIdentityColumn();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.InsertionDate).HasColumnType("datetime").HasDefaultValueSql("GETDATE()");
             builder.Property(x => x.UpdateDate).HasColumnType("datetime").HasDefaultValueSql("GETDATE()");
             builder.Property(x=>x.Status).HasColumnType("tinyint").HasDefaultValue(StatusCodes.Active);
