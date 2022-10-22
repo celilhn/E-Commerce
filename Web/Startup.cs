@@ -8,14 +8,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Interfaces;
+using Application.Utilities;
+using FluentValidation.AspNetCore;
+using Infrastructure.Ioc;
 
 namespace Web
 {
     public class Startup
     {
+        public IConfiguration configuration { get; }
+        public ILoggerManager logger { get; }
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +31,11 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddFluentValidationAutoValidation();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            DependencyInjection.RegisterServices(services, configuration);
+            services.AddControllers(/*options => options.Filters.Add(new ApiExceptionFilterAttribute())*/);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,16 +48,14 @@ namespace Web
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            AppUtilities.AppUtilitiesConfigure(app.ApplicationServices.GetService<IConfiguration>());
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

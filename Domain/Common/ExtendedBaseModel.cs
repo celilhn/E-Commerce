@@ -10,7 +10,7 @@ namespace Domain.Common
     {
         [DatabaseGenerated(databaseGeneratedOption: DatabaseGeneratedOption.Identity)]
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "datetime"), DefaultValue("getdate()")]
         public DateTime InsertionDate { get; set; }
         [Column(TypeName = "datetime"), DefaultValue("getdate()")]
