@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Models;
@@ -20,6 +21,7 @@ namespace Application.Services
 
         public Faq UpdateFaq(Faq faq)
         {
+            faq.UpdateDate = DateTime.Now;
             return faqRepository.UpdateFaq(faq);
         }
 

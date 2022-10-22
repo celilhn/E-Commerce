@@ -30,8 +30,9 @@ namespace Domain.Constants
             Create = 0,
             Update = 2,
             List = 3,
-            Error = 4
-		}
+            Error = 4,
+            Delete = 5
+        }
 		
         public enum AdminUserTypes
         {

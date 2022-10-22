@@ -4,8 +4,10 @@ using Application.Utilities;
 using Application.Logging;
 using Application.Mapping;
 using Application.Services;
+using Application.ValidationRules.FluentValidation.Faq;
 using AutoMapper;
 using Domain.Interfaces;
+using Domain.Models;
 using Infrastructure.Context;
 using Infrastructure.Notifications;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +36,7 @@ namespace Infrastructure.Ioc
             services.AddScoped<IFaqService, FaqService>();
             services.AddScoped<IFaqRepository, FaqRepository>();
 
+            services.AddScoped<IValidator<Faq>, FaqValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
