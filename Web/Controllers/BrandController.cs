@@ -26,15 +26,22 @@ namespace Web.Controllers
         [HttpPost]
         public IActionResult CreateBrand(Brand brand)
         {
-            if (ModelState.IsValid)
+            try
             {
-                brandService.AddBrand(brand);
-                TempData["AlertType"] = ActionTypes.Create.ToString();
+                if (ModelState.IsValid)
+                {
+                    brandService.AddBrand(brand);
+                    TempData["AlertType"] = ActionTypes.Create.ToString();
+                }
+                else
+                {
+                    ViewBag.IsModelStateValid = false;
+                    TempData["AlertType"] = ActionTypes.Error.ToString();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ViewBag.IsModelStateValid = false;
-                TempData["AlertType"] = ActionTypes.Error.ToString();
+                Console.WriteLine(ex);
             }
 
             if (brand.Id > 0)
@@ -59,6 +66,7 @@ namespace Web.Controllers
             }
             catch (Exception ex)
             {
+                TempData["AlertType"] = ActionTypes.Error.ToString();
                 Console.WriteLine(ex);
             }
             return RedirectToAction("ListBrand", "Brand");
@@ -76,7 +84,16 @@ namespace Web.Controllers
             {
                 Console.WriteLine(ex);
             }
-            return View(brand);
+
+            if (brand == null)
+            {
+                TempData["AlertType"] = ActionTypes.Error.ToString();
+                return RedirectToAction("ListBrand", "Brand");
+            }
+            else
+            {
+                return View(brand);
+            }
         }
 
         [HttpPost]

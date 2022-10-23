@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using System;
+using Application.Interfaces;
 using Application.Models;
 using Application.Utilities;
 using Application.Logging;
@@ -6,6 +7,7 @@ using Application.Mapping;
 using Application.Services;
 using Application.ValidationRules.FluentValidation.Brand;
 using Application.ValidationRules.FluentValidation.Faq;
+using Application.ValidationRules.FluentValidation.Size;
 using AutoMapper;
 using Domain.Interfaces;
 using Domain.Models;
@@ -26,7 +28,7 @@ namespace Infrastructure.Ioc
             Configuration configuration = _configuration.Get<Configuration>();
             services.AddSingleton(configuration);
             services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServer(
-                configuration.DBConnectionText,
+                GetDbConnectionText(configuration),
                 b => b.MigrationsAssembly(typeof(ECommerceDbContext).Assembly.FullName)));
 
             /* Services & Repositories */
@@ -38,10 +40,12 @@ namespace Infrastructure.Ioc
             services.AddScoped<IFaqRepository, FaqRepository>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<ISizeService, SizeService>();
             services.AddScoped<ISizeRepository, SizeRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();
+            services.AddScoped<IValidator<Size>, SizeValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -49,6 +53,13 @@ namespace Infrastructure.Ioc
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+        }
+
+        private static string GetDbConnectionText(Configuration configuration)
+        {
+            string connectionString = configuration.DBConnectionText;
+            connectionString = string.Format(connectionString, Environment.GetEnvironmentVariable("ECommerceDbUser"), Environment.GetEnvironmentVariable("ECommerceDbPassword"));
+            return connectionString;
         }
     }
 }
