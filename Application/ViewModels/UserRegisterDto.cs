@@ -1,7 +1,8 @@
-﻿
+﻿using Domain.Common;
+
 namespace Application.ViewModels
 {
-    internal class UserRegisterDto
+    public class UserRegisterDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }

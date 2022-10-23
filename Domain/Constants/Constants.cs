@@ -44,7 +44,11 @@ namespace Domain.Constants
         public enum SweetAlertTypes
         {
             UserEmailPassWordInCorrect = 0,
-            Error = 1
+            Error = 1,
+            Create = 2,
+            Update = 3,
+            Login = 4,
+            Register = 5,
         }
     }
 }
