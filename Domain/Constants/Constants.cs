@@ -34,13 +34,17 @@ namespace Domain.Constants
             Delete = 5
         }
 		
-        public enum AdminUserTypes
+        public enum UserTypes
         {
-            Unknown = -1,
-            All = 0,
-            Administrator = 1,
-            ReportUser = 2,
-            CampaignManager = 3
+            User = 0,
+            Admin = 1,
+            ReportUser = 2
+        }
+
+        public enum SweetAlertTypes
+        {
+            UserEmailPassWordInCorrect = 0,
+            Error = 1
         }
     }
 }
