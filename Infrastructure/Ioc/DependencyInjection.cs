@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using System;
+using Application.Interfaces;
 using Application.Models;
 using Application.Utilities;
 using Application.Logging;
@@ -27,7 +28,7 @@ namespace Infrastructure.Ioc
             Configuration configuration = _configuration.Get<Configuration>();
             services.AddSingleton(configuration);
             services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServer(
-                configuration.DBConnectionText,
+                GetDbConnectionText(configuration),
                 b => b.MigrationsAssembly(typeof(ECommerceDbContext).Assembly.FullName)));
 
             /* Services & Repositories */
@@ -52,6 +53,13 @@ namespace Infrastructure.Ioc
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+        }
+
+        private static string GetDbConnectionText(Configuration configuration)
+        {
+            string connectionString = configuration.DBConnectionText;
+            connectionString = string.Format(connectionString, Environment.GetEnvironmentVariable("ECommerceDbUser"), Environment.GetEnvironmentVariable("ECommerceDbPassword"));
+            return connectionString;
         }
     }
 }

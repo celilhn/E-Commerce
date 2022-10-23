@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -24,8 +25,15 @@ namespace Infrastructure.Context
                 .Build();
             AppUtilities.AppUtilitiesConfigure(configuration);
 
-            optionsBuilder.UseSqlServer(AppUtilities.GetConfigurationValue("DBConnectionText"));
+            optionsBuilder.UseSqlServer(GetDbConnectionText());
             return new ECommerceDbContext(optionsBuilder.Options);
+        }
+
+        private static string GetDbConnectionText()
+        {
+            string connectionString = AppUtilities.GetConfigurationValue("DBConnectionText");
+            connectionString = string.Format(connectionString, Environment.GetEnvironmentVariable("ECommerceDbUser"), Environment.GetEnvironmentVariable("ECommerceDbPassword"));
+            return connectionString;
         }
     }
 }
