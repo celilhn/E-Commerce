@@ -40,5 +40,11 @@ namespace Domain.Constants
             Admin = 1,
             ReportUser = 2
         }
+
+        public enum SweetAlertTypes
+        {
+            UserEmailPassWordInCorrect = 0,
+            Error = 1
+        }
     }
 }

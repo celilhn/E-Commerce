@@ -11,7 +11,7 @@ namespace Infrastructure.Configurations
             base.Configure(builder);
             builder.Property(x => x.Name).HasColumnType("varchar(100)");
             builder.Property(x => x.Surname).HasColumnType("varchar(100)");
-            builder.Property(x => x.UserName).HasColumnType("varchar(780)");
+            builder.Property(x => x.UserName).HasColumnType("varchar(80)");
             builder.Property(x => x.Email).HasColumnType("varchar(100)");
             builder.Property(x => x.Password).HasColumnType("varchar(33)");
             builder.Property(x => x.ImageUrl).HasColumnType("varchar(256)");
