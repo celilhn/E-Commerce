@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using static Domain.Constants.Constants;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -647,7 +648,50 @@
 
     <!--Main JS-->
     <script src="~/Web/assets/js/main.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (TempData["AlertType"] != null)
+    {
+        @if (TempData["AlertType"].ToString() == SweetAlertTypes.Error.ToString())
+        {
+            <script>
+                swal({
+                    title: "Bir hata oluştu!",
+                    text: "",
+                    icon: "error"
+                });
+            </script>
+        } 
+        else if (TempData["AlertType"].ToString() == SweetAlertTypes.UserEmailPassWordInCorrect.ToString())
+        {
+            <script>
+                swal({
+                    title: "Kullanıcı adı veya şifreniz hatalı!",
+                    text: "",
+                    icon: "error"
+                });
+            </script>
+        }
+        else if (TempData["AlertType"].ToString() == SweetAlertTypes.Register.ToString())
+        {
+            <script>
+                swal({
+                    title: "Kullanıcı kaydı başarılı!",
+                    text: "",
+                    icon: "success"
+                });
+            </script>
+        }
+        else if (TempData["AlertType"].ToString() == SweetAlertTypes.Login.ToString())
+        {
+            <script>
+                swal({
+                    title: "Giriş başarılı!",
+                    text: "",
+                    icon: "success"
+                });
+            </script>
+        }
+    }
 </body>
 
 </html>
