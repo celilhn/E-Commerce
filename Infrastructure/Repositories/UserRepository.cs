@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Domain.Interfaces;
 using Domain.Models;
 using Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 using static Domain.Constants.Constants;
 
 namespace Infrastructure.Repositories

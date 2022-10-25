@@ -3,6 +3,7 @@ using System.Linq;
 using Domain.Interfaces;
 using Domain.Models;
 using Infrastructure.Context;
+using static Domain.Constants.Constants;
 
 namespace Infrastructure.Repositories
 {
@@ -14,16 +15,16 @@ namespace Infrastructure.Repositories
             this.context = context;
         }
 
-        public UserLoginLog AddUserLoginLog(UserLoginLog userLoginLog)
+        public LoginLog AddUserLoginLog(LoginLog userLoginLog)
         {
-            context.UserLoginLogs.Add(userLoginLog);
+            context.LoginLogs.Add(userLoginLog);
             context.SaveChanges();
             return userLoginLog;
         }
 
-        public List<UserLoginLog> GetUserLoginLogs()
+        public List<LoginLog> GetUserLoginLogs(LoginTypes loginType)
         {
-            return context.UserLoginLogs.ToList();
+            return context.LoginLogs.Where(x=>x.LoginType == loginType).ToList();
         }
     }
 }

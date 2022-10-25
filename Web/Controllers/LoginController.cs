@@ -19,52 +19,7 @@ namespace Web.Controllers
             this.userService = userService;
             this.mapper = mapper;
         }
-
-        [HttpGet]
-        public IActionResult PanelLogin()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult PanelLogin(UserLoginDto userLoginDto)
-        {
-            User user = null;
-            bool isAuthenticated = false;
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    user = userService.GetUser(userLoginDto.Email, AppUtilities.EncryptSHA256(userLoginDto.Password));
-                    if (user != null)
-                    {
-                        isAuthenticated = true;
-                        HttpContext.Session.SetObjectAsJson("User", user);
-                        userService.SaveUserLoginLog(user.Email, user.Password, LoginStatus.Success);
-                    }
-                    else
-                    {
-                        TempData["AlertType"] = SweetAlertTypes.UserEmailPassWordInCorrect.ToString();
-                        userService.SaveUserLoginLog(userLoginDto.Email, AppUtilities.EncryptSHA256(userLoginDto.Password), LoginStatus.Wrong);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["AlertType"] = SweetAlertTypes.Error.ToString();
-                Console.WriteLine(ex);
-            }
-
-            if (isAuthenticated)
-            {
-                return RedirectToAction("ListFaqs", "Faq");
-            }
-            else
-            {
-                return View();
-            }
-        }
-
+        
         [HttpGet]
         public IActionResult Login()
         {

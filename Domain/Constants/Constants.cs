@@ -42,6 +42,12 @@ namespace Domain.Constants
             All = 3
         }
 
+        public enum AdminUserTypes
+        {
+            Admin = 0, 
+            ReportUser = 2
+        }
+
         public enum SweetAlertTypes
         {
             UserEmailPassWordInCorrect = 0,
@@ -57,6 +63,12 @@ namespace Domain.Constants
         {
             Success = 0,
             Wrong = 1
+        }
+
+        public enum LoginTypes
+        {
+            Web = 0,
+            Panel = 1,
         }
     }
 }
