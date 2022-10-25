@@ -16,7 +16,8 @@ namespace Infrastructure.Context
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<User> Userss { get; set; }
-        public DbSet<UserLoginLog> UserLoginLogs { get; set; }
+        public DbSet<LoginLog> LoginLogs { get; set; }
+        public DbSet<AdminUser> AdminUsers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,7 +33,8 @@ namespace Infrastructure.Context
             modelBuilder.ApplyConfiguration(new BrandConfigurations());
             modelBuilder.ApplyConfiguration(new SizeConfigurations());
             modelBuilder.ApplyConfiguration(new UserConfigurations());
-            modelBuilder.ApplyConfiguration(new UserLoginLogConfigurations());
+            modelBuilder.ApplyConfiguration(new LoginLogConfigurations());
+            modelBuilder.ApplyConfiguration(new AdminUserConfigurations());
         }
     }
 }

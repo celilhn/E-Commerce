@@ -1,6 +1,6 @@
 ﻿@using Domain.Models
 @using static Domain.Constants.Constants
-@model List<Domain.Models.UserLoginLog>
+@model List<Domain.Models.LoginLog>
 @{
     ViewData["Title"] = "ListUserLoginLog";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (UserLoginLog userLoginLog in Model)
+                            @foreach (LoginLog userLoginLog in Model)
                             {
                                 <tr>
                                     <td>@userLoginLog.Id</td>

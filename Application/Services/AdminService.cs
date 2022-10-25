@@ -11,58 +11,58 @@ using static Domain.Constants.Constants;
 
 namespace Application.Services
 {
-    public class UserService: IUserService
+    public class AdminService : IAdminUserService
     {
-        private readonly IUserRepository userRepository;
+        private readonly IAdminUserRepository adminUserRepository;
         private readonly IWebHostEnvironment environment;
         private readonly IUserLoginLogRepository userLoginLogRepository;
-        public UserService(IUserRepository userRepository, IWebHostEnvironment environment, IUserLoginLogRepository userLoginLogRepository)
+        public AdminService(IAdminUserRepository adminUserRepository, IWebHostEnvironment environment, IUserLoginLogRepository userLoginLogRepository)
         {
-            this.userRepository = userRepository;
+            this.adminUserRepository = adminUserRepository;
             this.environment = environment;
             this.userLoginLogRepository = userLoginLogRepository;
         }
-
-        public User AddUser(User user)
+        
+        public AdminUser AddAdminUser(AdminUser adminUser)
         {
-            return userRepository.AddUser(user);
+            return adminUserRepository.AddAdminUser(adminUser);
         }
 
-        public LoginLog SaveUserLoginLog(string email, string password, LoginStatus loginStatus)
+        public LoginLog SaveAdminUserLoginLog(string email, string password, LoginStatus loginStatus)
         {
             LoginLog userLoginLog = new LoginLog();
             userLoginLog.Email = email;
             userLoginLog.HashPassword = password;
             userLoginLog.LoginStatus = loginStatus;
-            userLoginLog.LoginType = LoginTypes.Web;
+            userLoginLog.LoginType = LoginTypes.Panel;
             userLoginLogRepository.AddUserLoginLog(userLoginLog);
             return userLoginLog;
         }
 
-        public User UpdateUser(User user)
+        public AdminUser UpdateAdminUser(AdminUser adminUser)
         {
-            user.UpdateDate = DateTime.Now;
-            return userRepository.UpdateUser(user);
+            adminUser.UpdateDate = DateTime.Now;
+            return adminUserRepository.UpdateAdminUser(adminUser);
         }
 
-        public User GetUser(int id)
+        public AdminUser GetAdminUser(int id)
         {
-            return userRepository.GetUser(id);
+            return adminUserRepository.GetAdminUser(id);
         }
 
-        public User GetUser(string email, string password)
+        public AdminUser GetAdminUser(string email, string password)
         {
-            return userRepository.GetUser(email, password);
+            return adminUserRepository.GetAdminUser(email, password);
         }
 
-        public List<User> GetUsers()
+        public List<AdminUser> GetAdminUsers()
         {
-            return userRepository.GetUsers();
+            return adminUserRepository.GetAdminUsers();
         }
 
-        public List<User> GetUsers(Constants.StatusCodes status)
+        public List<AdminUser> GetAdminUsers(Constants.StatusCodes status)
         {
-            return userRepository.GetUsers(status);
+            return adminUserRepository.GetAdminUsers(status);
         }
 
         public string UploadFile(IFormFile file)

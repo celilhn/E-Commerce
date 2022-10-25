@@ -9,10 +9,10 @@ using static Domain.Constants.Constants;
 namespace Web.Controllers
 {
     [Authorize(UserTypes.Admin)]
-    public class UserLoginLogController : Controller
+    public class LoginLogController : Controller
     {
         private readonly IUserLoginLogService userLoginLogService;
-        public UserLoginLogController(IUserLoginLogService userLoginLogService)
+        public LoginLogController(IUserLoginLogService userLoginLogService)
         {
             this.userLoginLogService = userLoginLogService;
         }
@@ -20,10 +20,25 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult ListUserLoginLog()
         {
-            List<UserLoginLog> userLoginLogs = null;
+            List<LoginLog> userLoginLogs = null;
             try
             {
-                userLoginLogs = userLoginLogService.GetUserLoginLogs();
+                userLoginLogs = userLoginLogService.GetUserLoginLogs(LoginTypes.Web);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return View(userLoginLogs);
+        }
+
+        [HttpGet]
+        public IActionResult ListAdminUserLoginLog()
+        {
+            List<LoginLog> userLoginLogs = null;
+            try
+            {
+                userLoginLogs = userLoginLogService.GetUserLoginLogs(LoginTypes.Panel);
             }
             catch (Exception ex)
             {

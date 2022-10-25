@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Models;
-using Microsoft.AspNetCore.Hosting;
+using static Domain.Constants.Constants;
 
 namespace Application.Services
 {
@@ -16,14 +15,14 @@ namespace Application.Services
             this.userLoginLogRepository = userLoginLogRepository;
         }
 
-        public UserLoginLog AddUserLoginLog(UserLoginLog userLoginLog)
+        public LoginLog AddUserLoginLog(LoginLog userLoginLog)
         {
             return userLoginLogRepository.AddUserLoginLog(userLoginLog);
         }
 
-        public List<UserLoginLog> GetUserLoginLogs()
+        public List<LoginLog> GetUserLoginLogs(LoginTypes loginType)
         {
-            return userLoginLogRepository.GetUserLoginLogs();
+            return userLoginLogRepository.GetUserLoginLogs(loginType);
         }
     }
 }
