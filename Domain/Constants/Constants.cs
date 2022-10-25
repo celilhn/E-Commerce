@@ -51,5 +51,11 @@ namespace Domain.Constants
             Register = 5,
             Delete = 6
         }
+
+        public enum LoginStatus
+        {
+            Success = 0,
+            Wrong = 1
+        }
     }
 }
