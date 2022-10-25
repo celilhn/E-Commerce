@@ -17,6 +17,7 @@ namespace Application.ValidationRules.FluentValidation.User
                 .WithMessage("Parola alanı zorunludur.")
                 .Length(1, 10)
                 .WithMessage("Karakter uzunluğu 10'dan fazla olamaz!");
+
         }
     }
 }

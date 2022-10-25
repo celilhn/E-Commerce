@@ -28,11 +28,12 @@ namespace Application.Services
             return userRepository.AddUser(user);
         }
 
-        public UserLoginLog SaveUserLoginLog(int userId, LoginStatus loginStatus)
+        public UserLoginLog SaveUserLoginLog(string email, string password, LoginStatus loginStatus)
         {
             UserLoginLog userLoginLog = new UserLoginLog();
+            userLoginLog.Email = email;
+            userLoginLog.HashPassword = password;
             userLoginLog.LoginStatus = loginStatus;
-            userLoginLog.UserId = userId;
             userLoginLogRepository.AddUserLoginLog(userLoginLog);
             return userLoginLog;
         }

@@ -40,12 +40,12 @@ namespace Web.Controllers
                     {
                         isAuthenticated = true;
                         HttpContext.Session.SetObjectAsJson("User", user);
-                        userService.SaveUserLoginLog(user.Id, LoginStatus.Success);
+                        userService.SaveUserLoginLog(user.Email, user.Password, LoginStatus.Success);
                     }
                     else
                     {
                         TempData["AlertType"] = SweetAlertTypes.UserEmailPassWordInCorrect.ToString();
-                        userService.SaveUserLoginLog(user.Id, LoginStatus.Wrong);
+                        userService.SaveUserLoginLog(userLoginDto.Email, AppUtilities.EncryptSHA256(userLoginDto.Password), LoginStatus.Wrong);
                     }
                 }
             }
@@ -86,10 +86,12 @@ namespace Web.Controllers
                         isAuthenticated = true;
                         HttpContext.Session.SetObjectAsJson("User", user);
                         TempData["AlertType"] = SweetAlertTypes.Login.ToString();
+                        userService.SaveUserLoginLog(user.Email, user.Password, LoginStatus.Success);
                     }
                     else
                     {
                         TempData["AlertType"] = SweetAlertTypes.UserEmailPassWordInCorrect.ToString();
+                        userService.SaveUserLoginLog(userLoginDto.Email, AppUtilities.EncryptSHA256(userLoginDto.Password), LoginStatus.Wrong);
                     }
                 }
             }
