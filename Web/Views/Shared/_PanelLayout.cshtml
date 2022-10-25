@@ -20,6 +20,9 @@
     <!-- DataTables -->
     <link href="~/Panel/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Panel/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Dropzone css -->
+    <link href="~/Panel/assets/plugins/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css">
 
     <!-- Responsive datatable examples -->
     <link href="~/Panel/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -502,7 +505,10 @@
     <!-- Datatable init js -->
     <script src="~/Panel/assets/pages/datatables.init.js"></script>
 
-    @if (TempData["AlertType"] != null)
+    <!-- Dropzone js -->
+    <script src="~/Panel/assets/plugins/dropzone/dist/dropzone.js"></script>
+
+@if (TempData["AlertType"] != null)
     {
         @if (TempData["AlertType"].ToString() == ActionTypes.Create.ToString())
         {
@@ -518,7 +524,7 @@
         {
             <script>
                 swal({
-                    title: "Update process successful!",
+                    title: @TempData["AlertType"].ToString() +"Update process successful!",
                     text: "",
                     icon: "success"
                 });

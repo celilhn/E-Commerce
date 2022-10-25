@@ -3,7 +3,6 @@ using System;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
-
 namespace Application.Utilities
 {
     public static class AppUtilities
@@ -65,27 +64,6 @@ namespace Application.Utilities
                 return false; 
             }
             return true;
-        }
-
-        public static bool ValidateBorusanPassword(string password)
-        {
-            int digits = 0;
-            int uppers = 0;
-            int lowers = 0;
-            foreach (var ch in password)
-            {
-                if (char.IsDigit(ch)) digits++;
-                if (char.IsUpper(ch)) uppers++;
-                if (char.IsLower(ch)) lowers++;
-            }
-            if (password.Length < 6 || digits == 0 || uppers == 0 || lowers == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
         }
 
         public static bool ValidatePassword(string password)

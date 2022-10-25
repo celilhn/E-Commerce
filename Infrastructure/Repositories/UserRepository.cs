@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Domain.Interfaces;
 using Domain.Models;
 using Infrastructure.Context;
@@ -26,7 +27,8 @@ namespace Infrastructure.Repositories
 
         public User UpdateUser(User user)
         {
-            context.Entry(user).State = EntityState.Modified;
+            context.Update(user);
+            context.Entry<User>(user).Property(x => x.Password).IsModified = false;
             context.SaveChanges();
             return user;
         }

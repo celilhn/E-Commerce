@@ -8,14 +8,9 @@ namespace Domain.Common
 {
     public class ExtendedBaseModel
     {
-        [DatabaseGenerated(databaseGeneratedOption: DatabaseGeneratedOption.Identity)]
-        [Key]
         public int Id { get; set; }
-        [Column(TypeName = "datetime"), DefaultValue("getdate()")]
         public DateTime InsertionDate { get; set; }
-        [Column(TypeName = "datetime"), DefaultValue("getdate()")]
         public DateTime UpdateDate { get; set; }
-        [Column(TypeName = "tinyint"), DefaultValue(1)]
         public StatusCodes Status { get; set; }
     }
 }

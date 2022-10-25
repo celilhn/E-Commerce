@@ -1,0 +1,101 @@
+﻿@model Application.ViewModels.UserUpdateDto;
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "UpdateUser";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <!-- end col -->
+
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Kullanıcı Güncelleme Sayfası</h4>
+                    <br/>
+                    @if (ViewBag.IsModelStateValid == false)
+                    {
+                        <div class="alert alert-danger" asp-validation-summary="All">
+
+                        </div>
+                    }
+                    <form asp-controller="User" asp-action="UpdateUser" enctype="multipart/form-data">
+                        <div class="form-group" hidden="hidden">
+                            <div>
+                                <input type="text" class="form-control" asp-for="Id" name="Id">
+                                <input type="text" class="form-control" asp-for="InsertionDate" name="InsertionDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Ad</label>
+                            <div>
+                                <input type="text" asp-for="Name" name="Name" class="form-control" required placeholder="Ad yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Soyad</label>
+                            <div>
+                                <input type="text" asp-for="Surname" name="Surname" class="form-control" required placeholder="Soyad yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Kullanıcı Adı</label>
+                            <div>
+                                <input type="text" asp-for="UserName" name="UserName" class="form-control" required placeholder="Kullanıcı adı yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <div>
+                                <input type="email" asp-for="Email" name="Email" class="form-control" required placeholder="E-mail yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Fotoğraf</label>
+                            @if (Model.ImageUrl != "")
+                            {
+                                <div>
+                                    <img alt="@Model.Name" src="@Url.Content("~/images/" + Model.ImageUrl)">
+                                </div>
+                            }
+                            <div class="fallback">
+                                <input name="file" type="file">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Kullanıcı Tipi</label>
+                            <div>
+                                <select asp-for="UserType" class="form-control" name="UserType" asp-items="Html.GetEnumSelectList<UserTypes>()">
+                                    <option selected="selected" value="-1">Lütfen Seçiniz</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div>
+                                <select asp-for="Status" class="form-control" name="Status" asp-items="Html.GetEnumSelectList<StatusCodes>()">
+                                    <option selected="selected" value="-1">Please Choose</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                    Kaydet
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->
