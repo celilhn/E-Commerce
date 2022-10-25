@@ -8,6 +8,8 @@ using Application.Services;
 using Application.ValidationRules.FluentValidation.Brand;
 using Application.ValidationRules.FluentValidation.Faq;
 using Application.ValidationRules.FluentValidation.Size;
+using Application.ValidationRules.FluentValidation.User;
+using Application.ViewModels;
 using AutoMapper;
 using Domain.Interfaces;
 using Domain.Models;
@@ -48,6 +50,10 @@ namespace Infrastructure.Ioc
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();
             services.AddScoped<IValidator<Size>, SizeValidator>();
+            services.AddScoped<IValidator<UserAddDto>, UserAddValidator>();
+            services.AddScoped<IValidator<UserUpdateDto>, UserUpdateValidator>();
+            services.AddScoped<IValidator<UserLoginDto>, UserLoginValidator>();
+            services.AddScoped<IValidator<UserRegisterDto>, UserRegisterValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Domain.Constants;
 using Domain.Models;
-using static Domain.Constants.Constants;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Interfaces
 {
@@ -11,6 +12,7 @@ namespace Application.Interfaces
         User GetUser(int id);
         User GetUser(string email, string password);
         List<User> GetUsers();
-        List<User> GetUsers(StatusCodes status);
+        List<User> GetUsers(Constants.StatusCodes status);
+        string UploadFile(IFormFile file);
     }
 }

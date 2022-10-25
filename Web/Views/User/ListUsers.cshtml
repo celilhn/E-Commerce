@@ -1,8 +1,8 @@
 ﻿@using Domain.Models
 @using static Domain.Constants.Constants
-@model List<Domain.Models.Size>
+@model List<Domain.Models.User>
 @{
-    ViewData["Title"] = "ListSize";
+    ViewData["Title"] = "ListUsers";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
 }
 
@@ -22,29 +22,35 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Kayıt Tarihi</th>
-                                <th>Güncelleme Tarihi</th>
                                 <th>Durumu</th>
-                                <th>Size</th>
-                                <th>Sil</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Kullanıcı Adı</th>
+                                <th>Email</th>
+                                <th>Kullanıcı Tipi</th>
                                 <th>Güncelle</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (Size size in Model)
+                            @foreach (User size in Model)
                             {
                                 <tr>
                                     <td>@size.Id</td>
                                     <td>@size.InsertionDate</td>
-                                    <td>@size.UpdateDate</td>
                                     <td>@size.Status</td>
+                                    <td>@size.Name</td>
+                                    <td>@size.Surname</td>
+                                    <td>@size.UserName</td>
+                                    <td>@size.Email</td>
+                                    <td>@size.UserType</td>
                                     <td>@size.Name</td>
                                     <th>
                                         @if (size.Status == StatusCodes.Active)
                                         {
-                                            <a asp-controller="Size" asp-action="DeleteSize" asp-route-Id="@size.Id"><i class="dripicons-document-delete"></i></a>
+                                            <a asp-controller="User" asp-action="DeleteUser" asp-route-Id="@size.Id"><i class="dripicons-document-delete"></i></a>
                                         }
                                     </th>
-                                    <th><a asp-controller="Size" asp-action="UpdateSize" asp-route-Id="@size.Id"><i class="fas fa-edit"></i></a></th> 
+                                    <th><a asp-controller="User" asp-action="UpdateUser" asp-route-Id="@size.Id"><i class="fas fa-edit"></i></a></th> 
                                 </tr>
                             }
                         </tbody>

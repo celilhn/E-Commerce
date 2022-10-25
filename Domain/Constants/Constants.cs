@@ -49,6 +49,7 @@ namespace Domain.Constants
             Update = 3,
             Login = 4,
             Register = 5,
+            Delete = 6
         }
     }
 }
