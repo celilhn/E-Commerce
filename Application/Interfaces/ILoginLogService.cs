@@ -2,9 +2,9 @@
 using Domain.Models;
 using static Domain.Constants.Constants;
 
-namespace Domain.Interfaces
+namespace Application.Interfaces
 {
-    public interface IUserLoginLogRepository
+    public interface ILoginLogService
     {
         LoginLog AddUserLoginLog(LoginLog userLoginLog);
         List<LoginLog> GetUserLoginLogs(LoginTypes loginType);

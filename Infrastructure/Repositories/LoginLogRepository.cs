@@ -7,10 +7,10 @@ using static Domain.Constants.Constants;
 
 namespace Infrastructure.Repositories
 {
-    public class UserLoginLogRepository : IUserLoginLogRepository
+    public class LoginLogRepository : ILoginLogRepository
     {
         private readonly ECommerceDbContext context;
-        public UserLoginLogRepository(ECommerceDbContext context)
+        public LoginLogRepository(ECommerceDbContext context)
         {
             this.context = context;
         }

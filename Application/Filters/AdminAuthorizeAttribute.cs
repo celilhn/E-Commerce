@@ -5,9 +5,9 @@ namespace Application.Filters
 {
     public class AdminAuthorizeAttribute : TypeFilterAttribute
     {
-        public AdminAuthorizeAttribute(params UserTypes[] userTypes) : base(typeof(AdminAuthorizeFilterAttribute))
+        public AdminAuthorizeAttribute(params AdminUserTypes[] adminUserTypes) : base(typeof(AdminAuthorizeFilterAttribute))
         {
-            Arguments = new[] { userTypes };
+            Arguments = new[] { adminUserTypes };
         }
     }
 }

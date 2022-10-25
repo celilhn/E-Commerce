@@ -1,7 +1,7 @@
-﻿@model Application.ViewModels.UserUpdateDto;
+﻿@model Application.ViewModels.AdminUserUpdateDto;
 @using static Domain.Constants.Constants;
 @{
-    ViewData["Title"] = "UpdateUser";
+    ViewData["Title"] = "UpdateAdminUser";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
 }
 
@@ -14,7 +14,7 @@
         <div class="col-lg-10">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Kullanıcı Güncelleme Sayfası</h4>
+                    <h4 class="mt-0 header-title">Panel Kullanıcısı Güncelleme Sayfası</h4>
                     <br/>
                     @if (ViewBag.IsModelStateValid == false)
                     {
@@ -42,9 +42,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Kullanıcı Adı</label>
+                            <label>Telefon Numarası</label>
                             <div>
-                                <input type="text" asp-for="UserName" name="UserName" class="form-control" required placeholder="Kullanıcı adı yazınız" />
+                                <input type="text" asp-for="PhoneNumber" name="PhoneNumber" class="form-control" required placeholder="Telefon numarası yazınız" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -68,7 +68,7 @@
                         <div class="form-group">
                             <label>Kullanıcı Tipi</label>
                             <div>
-                                <select asp-for="UserType" class="form-control" name="UserType" asp-items="Html.GetEnumSelectList<UserTypes>()">
+                                <select asp-for="AdminUserType" class="form-control" name="UserType" asp-items="Html.GetEnumSelectList<AdminUserTypes>()">
                                     <option selected="selected" value="-1">Lütfen Seçiniz</option>
                                 </select>
                             </div>

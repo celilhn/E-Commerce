@@ -9,39 +9,39 @@ namespace Application.Filters
 {
     public class AdminAuthorizeFilterAttribute : ActionFilterAttribute, IActionFilter
     {
-        private readonly UserTypes[] userTypes;
-        public AdminAuthorizeFilterAttribute(UserTypes[] userTypes)
+        private readonly AdminUserTypes[] adminUserTypes;
+        public AdminAuthorizeFilterAttribute(AdminUserTypes[] adminUserTypes)
         {
-            this.userTypes = userTypes;
+            this.adminUserTypes = adminUserTypes;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             int authorizationResult = 0;
-            User user = null;
+            AdminUser adminUser = null;
             try
             {
-                user = context.HttpContext.Session.GetObjectFromJson<User>("User");
-                context.HttpContext.Items.Add("User", user);
+                adminUser = context.HttpContext.Session.GetObjectFromJson<AdminUser>("AdminUser");
+                context.HttpContext.Items.Add("AdminUser", adminUser);
             }
             catch
             {
-                user = null;
+                adminUser = null;
             }
 
-            if (user != null && user.Id > 0)
+            if (adminUser != null && adminUser.Id > 0)
             {
-                if (user.UserType != null && userTypes != null)
+                if (adminUser.UserType != null && adminUserTypes != null)
                 {
-                    if (userTypes.Contains(UserTypes.All) && user.UserType == UserTypes.Admin)
+                    if (adminUserTypes.Contains(AdminUserTypes.All) && adminUser.UserType == AdminUserTypes.Admin)
                     {
                         authorizationResult = 1;
                     }
                     else
                     {
-                        foreach (UserTypes userType in userTypes)
+                        foreach (AdminUserTypes userType in adminUserTypes)
                         {
-                            if (user.UserType == userType)
+                            if (adminUser.UserType == userType)
                             {
                                 authorizationResult = 1;
                                 break;
@@ -65,7 +65,7 @@ namespace Application.Filters
 
             if (authorizationResult == -1)
             {
-                context.Result = new RedirectToActionResult("PanelLogin", "Login", null);
+                context.Result = new RedirectToActionResult("Login", "PanelLogin", null);
             }
             else if (authorizationResult == 0)
             {

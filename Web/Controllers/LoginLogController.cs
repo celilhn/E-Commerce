@@ -8,11 +8,11 @@ using static Domain.Constants.Constants;
 
 namespace Web.Controllers
 {
-    [Authorize(UserTypes.Admin)]
+    [AdminAuthorize(AdminUserTypes.Admin)]
     public class LoginLogController : Controller
     {
-        private readonly IUserLoginLogService userLoginLogService;
-        public LoginLogController(IUserLoginLogService userLoginLogService)
+        private readonly ILoginLogService userLoginLogService;
+        public LoginLogController(ILoginLogService userLoginLogService)
         {
             this.userLoginLogService = userLoginLogService;
         }
