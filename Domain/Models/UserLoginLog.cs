@@ -5,8 +5,8 @@ namespace Domain.Models
 {
     public class UserLoginLog : ExtendedBaseModel
     {
-        public int UserId { get; set; }
+        public string Email { get; set; }
+        public string HashPassword { get; set; }
         public LoginStatus LoginStatus { get; set; }
-        public virtual User User { get; set; }
     }
 }

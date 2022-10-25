@@ -9,7 +9,7 @@ namespace Application.Interfaces
     public interface IUserService
     {
         User AddUser(User user);
-        UserLoginLog SaveUserLoginLog(int userId, LoginStatus loginStatus);
+        UserLoginLog SaveUserLoginLog(string email, string password, LoginStatus loginStatus);
         User UpdateUser(User user);
         User GetUser(int id);
         User GetUser(string email, string password);
