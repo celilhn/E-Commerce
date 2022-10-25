@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Filters;
 using Application.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -31,12 +32,14 @@ namespace Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(UserTypes.Admin)]
         public IActionResult CreateFaq()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(UserTypes.Admin)]
         public IActionResult CreateFaq(Faq faq)
         {
             try
@@ -67,6 +70,7 @@ namespace Web.Controllers
             }
         }
         
+        [Authorize(UserTypes.Admin)]
         public ActionResult DeleteFaq(int Id)
         {
             Faq faq = null;
@@ -86,6 +90,7 @@ namespace Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(UserTypes.Admin)]
         public IActionResult UpdateFaq(int Id)
         {
             Faq faq = null;
@@ -110,6 +115,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(UserTypes.Admin)]
         public IActionResult UpdateFaq(Faq faq)
         {
             try
@@ -139,8 +145,9 @@ namespace Web.Controllers
                 return View(faq);
             }
         }
-
+        
         [HttpGet]
+        [Authorize(UserTypes.Admin)]
         public IActionResult ListFaqs()
         {
             List<Faq> faqs = null;

@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumb Section Start -->
+<div class="section">
+
+    <!-- Breadcrumb Area Start -->
+    <div class="breadcrumb-area bg-light">
+        <div class="container-fluid">
+            <div class="breadcrumb-content text-center">
+                <h1 class="title">404 Hatası</h1>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Anasayfa </a>
+                    </li>
+                    <li class="active"> 404 Hatası</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Area End -->
+
+</div>
+<!-- Breadcrumb Section End -->
+
+<!-- 404 Error Section Start -->
+<div class="section section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="error_form">
+                    <h1 class="title">404</h1>
+                    <h2 class="sub-title">Opps! SAYFA BULUNAMADI</h2>
+                    <p>Üzgünüz, aradığınız sayfa mevcut değil, kaldırılmış,<br/> adı değiştirilmiş veya geçici olarak kullanılamıyor.</p>
+                    <form class="search-form-error mb-8" action="#">
+                        <input class="input-text" placeholder="Ara..." type="text">
+                        <button class="submit-btn" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-hover-dark rounded-0">Ansayfa'ya dön'</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 404 Error Section End -->

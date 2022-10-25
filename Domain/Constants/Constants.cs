@@ -38,7 +38,8 @@ namespace Domain.Constants
         {
             User = 0,
             Admin = 1,
-            ReportUser = 2
+            ReportUser = 2,
+            All = 3
         }
 
         public enum SweetAlertTypes

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Application.Filters;
 using Application.Interfaces;
 using Application.Utilities;
 using Application.ViewModels;
@@ -12,6 +13,7 @@ using static Domain.Constants.Constants;
 
 namespace Web.Controllers
 {
+    [Authorize(UserTypes.Admin)]
     public class UserController : Controller
     {
         private readonly IUserService userService;
