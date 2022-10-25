@@ -18,6 +18,7 @@ namespace Infrastructure.Context
         public DbSet<User> Userss { get; set; }
         public DbSet<LoginLog> LoginLogs { get; set; }
         public DbSet<AdminUser> AdminUsers { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,6 +36,7 @@ namespace Infrastructure.Context
             modelBuilder.ApplyConfiguration(new UserConfigurations());
             modelBuilder.ApplyConfiguration(new LoginLogConfigurations());
             modelBuilder.ApplyConfiguration(new AdminUserConfigurations());
+            modelBuilder.ApplyConfiguration(new SliderConfigurations());
         }
     }
 }

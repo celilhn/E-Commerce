@@ -51,6 +51,8 @@ namespace Infrastructure.Ioc
             services.AddScoped<ILoginLogRepository, LoginLogRepository>();
             services.AddScoped<IAdminUserService, AdminUserService>();
             services.AddScoped<IAdminUserRepository, AdminUserRepository>();
+            services.AddScoped<ISliderService, SliderService>();
+            services.AddScoped<ISliderRepository, SliderRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();

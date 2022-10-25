@@ -26,6 +26,8 @@
 
     <!-- Responsive datatable examples -->
     <link href="~/Panel/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    
+    <link href="~/Panel/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
 </head>
 
@@ -525,8 +527,11 @@
 
     <!-- Dropzone js -->
     <script src="~/Panel/assets/plugins/dropzone/dist/dropzone.js"></script>
-
-@if (TempData["AlertType"] != null)
+    
+    <script src="~/Panel/assets/plugins/apexchart/apexcharts.min.js"></script>
+    <script src="~/Panel/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Panel/assets/plugins/tinymce/tinymce.min.js"></script>
+    @if (TempData["AlertType"] != null)
     {
         @if (TempData["AlertType"].ToString() == ActionTypes.Create.ToString())
         {
