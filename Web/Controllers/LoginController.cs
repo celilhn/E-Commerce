@@ -40,10 +40,12 @@ namespace Web.Controllers
                     {
                         isAuthenticated = true;
                         HttpContext.Session.SetObjectAsJson("User", user);
+                        userService.SaveUserLoginLog(user.Id, LoginStatus.Success);
                     }
                     else
                     {
                         TempData["AlertType"] = SweetAlertTypes.UserEmailPassWordInCorrect.ToString();
+                        userService.SaveUserLoginLog(user.Id, LoginStatus.Wrong);
                     }
                 }
             }

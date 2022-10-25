@@ -7,6 +7,7 @@ using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using static Domain.Constants.Constants;
 
 namespace Application.Services
 {
@@ -14,15 +15,26 @@ namespace Application.Services
     {
         private readonly IUserRepository userRepository;
         private readonly IWebHostEnvironment environment;
-        public UserService(IUserRepository userRepository, IWebHostEnvironment environment)
+        private readonly IUserLoginLogRepository userLoginLogRepository;
+        public UserService(IUserRepository userRepository, IWebHostEnvironment environment, IUserLoginLogRepository userLoginLogRepository)
         {
             this.userRepository = userRepository;
             this.environment = environment;
+            this.userLoginLogRepository = userLoginLogRepository;
         }
 
         public User AddUser(User user)
         {
             return userRepository.AddUser(user);
+        }
+
+        public UserLoginLog SaveUserLoginLog(int userId, LoginStatus loginStatus)
+        {
+            UserLoginLog userLoginLog = new UserLoginLog();
+            userLoginLog.LoginStatus = loginStatus;
+            userLoginLog.UserId = userId;
+            userLoginLogRepository.AddUserLoginLog(userLoginLog);
+            return userLoginLog;
         }
 
         public User UpdateUser(User user)

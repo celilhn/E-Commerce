@@ -2,12 +2,14 @@
 using Domain.Constants;
 using Domain.Models;
 using Microsoft.AspNetCore.Http;
+using static Domain.Constants.Constants;
 
 namespace Application.Interfaces
 {
     public interface IUserService
     {
-        User AddUser(User user);  
+        User AddUser(User user);
+        UserLoginLog SaveUserLoginLog(int userId, LoginStatus loginStatus);
         User UpdateUser(User user);
         User GetUser(int id);
         User GetUser(string email, string password);
