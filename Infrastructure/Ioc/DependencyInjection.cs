@@ -5,6 +5,7 @@ using Application.Utilities;
 using Application.Logging;
 using Application.Mapping;
 using Application.Services;
+using Application.ValidationRules.FluentValidation.AdminUser;
 using Application.ValidationRules.FluentValidation.Brand;
 using Application.ValidationRules.FluentValidation.Faq;
 using Application.ValidationRules.FluentValidation.Size;
@@ -46,8 +47,10 @@ namespace Infrastructure.Ioc
             services.AddScoped<ISizeRepository, SizeRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserLoginLogService, UserLoginLogService>();
-            services.AddScoped<IUserLoginLogRepository, UserLoginLogRepository>();
+            services.AddScoped<ILoginLogService, LoginLogService>();
+            services.AddScoped<ILoginLogRepository, LoginLogRepository>();
+            services.AddScoped<IAdminUserService, AdminUserService>();
+            services.AddScoped<IAdminUserRepository, AdminUserRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();
@@ -56,6 +59,8 @@ namespace Infrastructure.Ioc
             services.AddScoped<IValidator<UserUpdateDto>, UserUpdateValidator>();
             services.AddScoped<IValidator<UserLoginDto>, UserLoginValidator>();
             services.AddScoped<IValidator<UserRegisterDto>, UserRegisterValidator>();
+            services.AddScoped<IValidator<AdminUserAddDto>, AdminUserAddValidator>();
+            services.AddScoped<IValidator<AdminUserUpdateDto>, AdminUserUpdateValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

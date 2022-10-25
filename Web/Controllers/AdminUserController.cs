@@ -13,34 +13,34 @@ using static Domain.Constants.Constants;
 namespace Web.Controllers
 {
     [AdminAuthorize(AdminUserTypes.Admin)]
-    public class UserController : Controller
+    public class AdminUserController : Controller
     {
-        private readonly IUserService userService;
+        private readonly IAdminUserService adminUserService;
         private readonly IMapper mapper;
 
-        public UserController(IUserService userService, IMapper mapper)
+        public AdminUserController(IAdminUserService adminUserService, IMapper mapper)
         {
-            this.userService = userService;
+            this.adminUserService = adminUserService;
             this.mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult CreateUser()
+        public IActionResult CreateAdminUser()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateUser(UserAddDto userAddDto, IFormFile file)
+        public IActionResult CreateAdminUser(AdminUserAddDto adminUserAddDto, IFormFile file)
         {
             bool isAddSuccessful = false;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    userAddDto.ImageUrl = userService.UploadFile(file);
-                    userAddDto.Password = AppUtilities.EncryptSHA256(userAddDto.Password);
-                    userAddDto = mapper.Map<UserAddDto>(userService.AddUser(mapper.Map<User>(userAddDto)));
+                    adminUserAddDto.ImageUrl = adminUserService.UploadFile(file);
+                    adminUserAddDto.Password = AppUtilities.EncryptSHA256(adminUserAddDto.Password);
+                    adminUserAddDto = mapper.Map<AdminUserAddDto>(adminUserService.AddAdminUser(mapper.Map<AdminUser>(adminUserAddDto)));
                     TempData["AlertType"] = SweetAlertTypes.Create.ToString();
                     isAddSuccessful = true;
                 }
@@ -57,22 +57,22 @@ namespace Web.Controllers
 
             if (isAddSuccessful)
             {
-                return RedirectToAction("ListUsers", "User");
+                return RedirectToAction("ListAdminUsers", "AdminUser");
             }
             else
             {
-                return View(userAddDto);
+                return View(adminUserAddDto);
             }
         }
 
-        public ActionResult DeleteUser(int Id)
+        public ActionResult DeleteAdminUser(int Id)
         {
-            User user = null;
+            AdminUser adminUser = null;
             try
             {
-                user = userService.GetUser(Id);
-                user.Status = 0;
-                userService.UpdateUser(user);
+                adminUser = adminUserService.GetAdminUser(Id);
+                adminUser.Status = 0;
+                adminUserService.UpdateAdminUser(adminUser);
                 TempData["AlertType"] = SweetAlertTypes.Delete.ToString();
             }
             catch (Exception ex)
@@ -80,35 +80,35 @@ namespace Web.Controllers
                 TempData["AlertType"] = SweetAlertTypes.Error.ToString();
                 Console.WriteLine(ex);
             }
-            return RedirectToAction("ListUsers", "User");
+            return RedirectToAction("ListAdminUsers", "AdminUser");
         }
 
         [HttpGet]
-        public IActionResult UpdateUser(int Id)
+        public IActionResult UpdateAdminUser(int Id)
         {
-            UserUpdateDto user = null;
+            AdminUserUpdateDto adminUser = null;
             try
             {
-                user = mapper.Map<UserUpdateDto>(userService.GetUser(Id));
+                adminUser = mapper.Map<AdminUserUpdateDto>(adminUserService.GetAdminUser(Id));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
 
-            if (user == null)
+            if (adminUser == null)
             {
                 TempData["AlertType"] = ActionTypes.Error.ToString();
-                return RedirectToAction("ListUsers", "User");
+                return RedirectToAction("ListAdminUsers", "AdminUser");
             }
             else
             {
-                return View(user);
+                return View(adminUser);
             }
         }
 
         [HttpPost]
-        public IActionResult UpdateUser(UserUpdateDto userUpdateDto, IFormFile file)
+        public IActionResult UpdateAdminUser(AdminUserUpdateDto adminUserUpdateDto, IFormFile file)
         {
             try
             {
@@ -117,9 +117,9 @@ namespace Web.Controllers
                 {
                     if (file != null)
                     {
-                        userUpdateDto.ImageUrl = userService.UploadFile(file);
+                        adminUserUpdateDto.ImageUrl = adminUserService.UploadFile(file);
                     }
-                    userUpdateDto = mapper.Map<UserUpdateDto>(userService.UpdateUser(mapper.Map<User>(userUpdateDto)));
+                    adminUserUpdateDto = mapper.Map<AdminUserUpdateDto>(adminUserService.UpdateAdminUser(mapper.Map<AdminUser>(adminUserUpdateDto)));
                     ViewBag.IsModelStateValid = true;
                     TempData["AlertType"] = SweetAlertTypes.Update.ToString();
                 }
@@ -135,28 +135,28 @@ namespace Web.Controllers
 
             if (ViewBag.IsModelStateValid == true)
             {
-                return RedirectToAction("ListUsers", "User");
+                return RedirectToAction("ListAdminUsers", "AdminUser");
             }
             else
             {
-                return View(userUpdateDto);
+                return View(adminUserUpdateDto);
             }
         }
 
         [HttpGet]
-        public IActionResult ListUsers()
+        public IActionResult ListAdminUsers()
         {
-            List<User> users = null;
+            List<AdminUser> adminUsers = null;
             try
             {
-                users = userService.GetUsers();
+                adminUsers = adminUserService.GetAdminUsers();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            return View(users);
+            return View(adminUsers);
         }
     }
 }

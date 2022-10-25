@@ -7,10 +7,10 @@ using static Domain.Constants.Constants;
 
 namespace Application.Services
 {
-    public class UserLoginLogService : IUserLoginLogService
+    public class LoginLogService : ILoginLogService
     {
-        private readonly IUserLoginLogRepository userLoginLogRepository;
-        public UserLoginLogService(IUserLoginLogRepository userLoginLogRepository)
+        private readonly ILoginLogRepository userLoginLogRepository;
+        public LoginLogService(ILoginLogRepository userLoginLogRepository)
         {
             this.userLoginLogRepository = userLoginLogRepository;
         }

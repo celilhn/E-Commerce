@@ -16,6 +16,10 @@ namespace Application.Mapping
             CreateMap<UserAddDto, User>();
             CreateMap<User, UserUpdateDto>();
             CreateMap<UserUpdateDto, User>();
+            CreateMap<AdminUser, AdminUserAddDto>();
+            CreateMap<AdminUserAddDto, AdminUser>();
+            CreateMap<AdminUser, AdminUserUpdateDto>();
+            CreateMap<AdminUserUpdateDto, AdminUser>();
         }
     }
 }

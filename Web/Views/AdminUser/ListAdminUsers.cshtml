@@ -1,8 +1,8 @@
 ﻿@using Domain.Models
 @using static Domain.Constants.Constants
-@model List<Domain.Models.User>
+@model List<Domain.Models.AdminUser>
 @{
-    ViewData["Title"] = "ListUsers";
+    ViewData["Title"] = "ListAdminUsers";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
 }
 
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="mt-0 header-title">Kullanıcı Listesi</h4>
+                    <h4 class="mt-0 header-title">Panel Kullanıcı Listesi</h4>
                     <p class="sub-title">
                     </p>
 
@@ -25,32 +25,32 @@
                                 <th>Durumu</th>
                                 <th>Ad</th>
                                 <th>Soyad</th>
-                                <th>Kullanıcı Adı</th>
+                                <th>Telefon numarası</th>
                                 <th>Email</th>
                                 <th>Kullanıcı Tipi</th>
                                 <th>Güncelle</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (User user in Model)
+                            @foreach (AdminUser adminUser in Model)
                             {
                                 <tr>
-                                    <td>@user.Id</td>
-                                    <td>@user.InsertionDate</td>
-                                    <td>@user.Status</td>
-                                    <td>@user.Name</td>
-                                    <td>@user.Surname</td>
-                                    <td>@user.UserName</td>
-                                    <td>@user.Email</td>
-                                    <td>@user.UserType</td>
-                                    <td>@user.Name</td>
+                                    <td>@adminUser.Id</td>
+                                    <td>@adminUser.InsertionDate</td>
+                                    <td>@adminUser.Status</td>
+                                    <td>@adminUser.Name</td>
+                                    <td>@adminUser.Surname</td>
+                                    <td>@adminUser.PhoneNumber</td>
+                                    <td>@adminUser.Email</td>
+                                    <td>@adminUser.UserType</td>
+                                    <td>@adminUser.Name</td>
                                     <th>
-                                        @if (user.Status == StatusCodes.Active)
+                                        @if (adminUser.Status == StatusCodes.Active)
                                         {
-                                            <a asp-controller="User" asp-action="DeleteUser" asp-route-Id="@user.Id"><i class="dripicons-document-delete"></i></a>
+                                            <a asp-controller="AdminUser" asp-action="DeleteAdminUser" asp-route-Id="@adminUser.Id"><i class="dripicons-document-delete"></i></a>
                                         }
                                     </th>
-                                    <th><a asp-controller="User" asp-action="UpdateUser" asp-route-Id="@user.Id"><i class="fas fa-edit"></i></a></th> 
+                                    <th><a asp-controller="AdminUser" asp-action="UpdateAdminUser" asp-route-Id="@adminUser.Id"><i class="fas fa-edit"></i></a></th> 
                                 </tr>
                             }
                         </tbody>

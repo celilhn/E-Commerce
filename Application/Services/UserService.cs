@@ -15,8 +15,8 @@ namespace Application.Services
     {
         private readonly IUserRepository userRepository;
         private readonly IWebHostEnvironment environment;
-        private readonly IUserLoginLogRepository userLoginLogRepository;
-        public UserService(IUserRepository userRepository, IWebHostEnvironment environment, IUserLoginLogRepository userLoginLogRepository)
+        private readonly ILoginLogRepository userLoginLogRepository;
+        public UserService(IUserRepository userRepository, IWebHostEnvironment environment, ILoginLogRepository userLoginLogRepository)
         {
             this.userRepository = userRepository;
             this.environment = environment;

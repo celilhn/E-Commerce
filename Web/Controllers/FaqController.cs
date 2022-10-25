@@ -32,14 +32,14 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(UserTypes.Admin)]
+        [AdminAuthorize(AdminUserTypes.Admin)]
         public IActionResult CreateFaq()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(UserTypes.Admin)]
+        [AdminAuthorize(AdminUserTypes.Admin)]
         public IActionResult CreateFaq(Faq faq)
         {
             try
@@ -69,8 +69,8 @@ namespace Web.Controllers
                 return View(faq);
             }
         }
-        
-        [Authorize(UserTypes.Admin)]
+
+        [AdminAuthorize(AdminUserTypes.Admin)]
         public ActionResult DeleteFaq(int Id)
         {
             Faq faq = null;
@@ -90,7 +90,7 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(UserTypes.Admin)]
+        [AdminAuthorize(AdminUserTypes.Admin)]
         public IActionResult UpdateFaq(int Id)
         {
             Faq faq = null;
@@ -115,7 +115,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        [Authorize(UserTypes.Admin)]
+        [AdminAuthorize(AdminUserTypes.Admin)]
         public IActionResult UpdateFaq(Faq faq)
         {
             try
@@ -147,7 +147,7 @@ namespace Web.Controllers
         }
         
         [HttpGet]
-        [Authorize(UserTypes.Admin)]
+        [AdminAuthorize(AdminUserTypes.Admin)]
         public IActionResult ListFaqs()
         {
             List<Faq> faqs = null;

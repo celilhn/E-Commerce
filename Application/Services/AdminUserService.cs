@@ -11,12 +11,12 @@ using static Domain.Constants.Constants;
 
 namespace Application.Services
 {
-    public class AdminService : IAdminUserService
+    public class AdminUserService : IAdminUserService
     {
         private readonly IAdminUserRepository adminUserRepository;
         private readonly IWebHostEnvironment environment;
-        private readonly IUserLoginLogRepository userLoginLogRepository;
-        public AdminService(IAdminUserRepository adminUserRepository, IWebHostEnvironment environment, IUserLoginLogRepository userLoginLogRepository)
+        private readonly ILoginLogRepository userLoginLogRepository;
+        public AdminUserService(IAdminUserRepository adminUserRepository, IWebHostEnvironment environment, ILoginLogRepository userLoginLogRepository)
         {
             this.adminUserRepository = adminUserRepository;
             this.environment = environment;

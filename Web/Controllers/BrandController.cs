@@ -8,7 +8,7 @@ using static Domain.Constants.Constants;
 
 namespace Web.Controllers
 {
-    [Authorize(UserTypes.Admin)]
+    [AdminAuthorize(AdminUserTypes.Admin)]
     public class BrandController : Controller
     {
         private readonly IBrandService brandService;
