@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Filters;
 using Application.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using static Domain.Constants.Constants;
 
 namespace Web.Controllers
 {
+    [Authorize(UserTypes.Admin)]
     public class UserLoginLogController : Controller
     {
         private readonly IUserLoginLogService userLoginLogService;
