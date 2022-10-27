@@ -43,7 +43,7 @@ namespace Infrastructure.Repositories
 
         public List<Slider> GetSliders(StatusCodes statusCodes)
         {
-            return context.Sliders.Where(x => x.Status == status).ToList();
+            return context.Sliders.Where(x => x.Status == statusCodes).ToList();
         }
     }
 }
