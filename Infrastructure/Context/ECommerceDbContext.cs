@@ -19,6 +19,7 @@ namespace Infrastructure.Context
         public DbSet<LoginLog> LoginLogs { get; set; }
         public DbSet<AdminUser> AdminUsers { get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Tag> Tagss { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +38,7 @@ namespace Infrastructure.Context
             modelBuilder.ApplyConfiguration(new LoginLogConfigurations());
             modelBuilder.ApplyConfiguration(new AdminUserConfigurations());
             modelBuilder.ApplyConfiguration(new SliderConfigurations());
+            modelBuilder.ApplyConfiguration(new TagConfigurations());
         }
     }
 }
