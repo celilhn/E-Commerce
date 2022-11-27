@@ -11,5 +11,7 @@ namespace Application.Interfaces
         Size UpdateSize(Size size);
         List<Size> GetSizes();
         List<Size> GetSizes(StatusCodes status);
+        bool IsSizeExist(string name);
+        bool ControlSizeIsExistWithParameters(int id, string name);
     }
 }

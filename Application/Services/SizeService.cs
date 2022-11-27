@@ -40,5 +40,15 @@ namespace Application.Services
         {
             return sizeRepository.GetSizes(status);
         }
+
+        public bool IsSizeExist(string name)
+        {
+            return sizeRepository.IsSizeExist(name);
+        }
+
+        public bool ControlSizeIsExistWithParameters(int id, string name)
+        {
+            return sizeRepository.ControlSizeIsExistWithParameters(id, name);
+        }
     }
 }
