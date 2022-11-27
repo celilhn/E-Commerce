@@ -42,12 +42,32 @@ namespace Infrastructure.Repositories
 
         public List<User> GetUsers()
         {
-            return context.Userss.ToList();
+            return context.Userss.Where(x=>x.Status != StatusCodes.Deleted).ToList();
         }
 
         public List<User> GetUsers(StatusCodes status)
         {
             return context.Userss.Where(x => x.Status == status).ToList();
+        }
+
+        public bool IsUserExistByPhoneNumber(string phoneNumber)
+        {
+            return context.Userss.Any(x => x.PhoneNumber == phoneNumber && x.Status != StatusCodes.Deleted);
+        }
+
+        public bool IsUserExistByEmail(string email)
+        {
+            return context.Userss.Any(x => x.Email == email && x.Status != StatusCodes.Deleted);
+        }
+
+        public bool ControlUserIsExistWithPhoneNumber(int id, string phoneNumber)
+        {
+            return context.Userss.Any(x => x.Id == id && x.PhoneNumber == phoneNumber && x.Status != StatusCodes.Deleted);
+        }
+
+        public bool ControlUserIsExistWithEmail(int id, string email)
+        {
+            return context.Userss.Any(x => x.Id == id && x.Email == email && x.Status != StatusCodes.Deleted);
         }
     }
 }

@@ -16,5 +16,9 @@ namespace Application.Interfaces
         List<User> GetUsers();
         List<User> GetUsers(Constants.StatusCodes status);
         string UploadFile(IFormFile file);
+        bool IsUserExistByPhoneNumber(string phoneNumber);
+        bool IsUserExistByEmail(string email);
+        bool ControlUserIsExistWithPhoneNumber(int id, string phoneNumber);
+        bool ControlUserIsExistWithEmail(int id, string email);
     }
 }
