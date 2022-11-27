@@ -40,5 +40,15 @@ namespace Application.Services
         {
             return brandRepository.GetBrands(status);
         }
+
+        public bool IsBrandExist(string name)
+        {
+            return brandRepository.IsBrandExist(name);
+        }
+
+        public bool ControlBrandIsExistWithParameters(int id, string name)
+        {
+            return brandRepository.ControlBrandIsExistWithParameters(id, name);
+        }
     }
 }

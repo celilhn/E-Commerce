@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain.Constants;
 using Domain.Interfaces;
 using Domain.Models;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using static Domain.Constants.Constants;
 
 namespace Infrastructure.Repositories
 {
@@ -41,9 +41,19 @@ namespace Infrastructure.Repositories
             return context.Brands.ToList();
         }
 
-        public List<Brand> GetBrands(Constants.StatusCodes status)
+        public List<Brand> GetBrands(StatusCodes status)
         {
             return context.Brands.Where(x => x.Status == status).ToList();
+        }
+
+        public bool IsBrandExist(string name)
+        {
+            return context.Brands.Any(x => x.Name == name && x.Status != StatusCodes.Deleted);
+        }
+
+        public bool ControlBrandIsExistWithParameters(int id, string name)
+        {
+            return context.Brands.Any(x => x.Id == id && x.Name == name && x.Status != StatusCodes.Deleted);
         }
     }
 }

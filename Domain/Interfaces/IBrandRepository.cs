@@ -11,5 +11,7 @@ namespace Domain.Interfaces
         Brand UpdateBrand(Brand brand);
         List<Brand> GetBrands();
         List<Brand> GetBrands(StatusCodes status);
+        bool IsBrandExist(string name);
+        bool ControlBrandIsExistWithParameters(int id, string name);
     }
 }
