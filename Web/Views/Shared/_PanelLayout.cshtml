@@ -463,6 +463,14 @@
                                     <li><a asp-controller="LoginLog" asp-action="ListAdminUserLoginLog">Panel Kullanıcı Login Logları</a></li>
                                 </ul>
                             </li>
+                            
+                        <li class="has-submenu">
+                            <a href="#"><i class="dripicons-to-do"></i>Tag </a>
+                            <ul class="submenu">
+                                <li><a asp-controller="Tag" asp-action="CreateTag">Tag Oluştur</a></li>
+                                <li><a asp-controller="Tag" asp-action="ListTags">Tag Listesi</a></li>
+                            </ul>
+                        </li>
 
                         </ul>
                         <!-- End navigation menu -->
@@ -527,7 +535,11 @@
 
     <!-- Dropzone js -->
     <script src="~/Panel/assets/plugins/dropzone/dist/dropzone.js"></script>
-    
+
+    <!-- Alertify js -->
+    <script src="~/Panel/assets/plugins/alertify/js/alertify.js"></script>
+    <script src="~/Panel/assets/pages/alertify-init.js"></script>
+
     <script src="~/Panel/assets/plugins/apexchart/apexcharts.min.js"></script>
     <script src="~/Panel/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="~/Panel/assets/plugins/tinymce/tinymce.min.js"></script>

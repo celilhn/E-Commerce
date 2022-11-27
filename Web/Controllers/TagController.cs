@@ -9,29 +9,29 @@ using static Domain.Constants.Constants;
 namespace Web.Controllers
 {
     [AdminAuthorize(AdminUserTypes.Admin)]
-    public class SizeController : Controller
+    public class TagController : Controller
     {
-        private readonly ISizeService sizeService;
+        private readonly ITagService tagService;
 
-        public SizeController(ISizeService sizeService)
+        public TagController(ITagService tagService)
         {
-            this.sizeService = sizeService;
+            this.tagService = tagService;
         }
 
         [HttpGet]
-        public IActionResult CreateSize()
+        public IActionResult CreateTag()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateSize(Size size)
+        public IActionResult CreateTag(Tag tag)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    sizeService.AddSize(size);
+                    tagService.AddTag(tag);
                     TempData["AlertType"] = ActionTypes.Create.ToString();
                 }
                 else
@@ -45,24 +45,24 @@ namespace Web.Controllers
                 Console.WriteLine(ex);
             }
 
-            if (size.Id > 0)
+            if (tag.Id > 0)
             {
-                return RedirectToAction("ListSize", "Size");
+                return RedirectToAction("ListTags", "Tag");
             }
             else
             {
-                return View(size);
+                return View(tag);
             }
         }
 
-        public ActionResult DeleteSize(int Id)
+        public ActionResult DeleteTag(int id)
         {
-            Size size = null;
+            Tag tag = null;
             try
             {
-                size = sizeService.GetSize(Id);
-                size.Status = 0;
-                sizeService.UpdateSize(size);
+                tag = tagService.GetTag(id);
+                tag.Status = StatusCodes.Deleted;
+                tagService.UpdateTag(tag);
                 TempData["AlertType"] = ActionTypes.Delete.ToString();
             }
             catch (Exception ex)
@@ -70,42 +70,42 @@ namespace Web.Controllers
                 TempData["AlertType"] = ActionTypes.Error.ToString();
                 Console.WriteLine(ex);
             }
-            return RedirectToAction("ListSize", "Size");
+            return RedirectToAction("ListTags", "Tag");
         }
 
         [HttpGet]
-        public IActionResult UpdateSize(int Id)
+        public IActionResult UpdateTag(int id)
         {
-            Size size = null;
+            Tag tag = null;
             try
             {
-                size = sizeService.GetSize(Id);
+                tag = tagService.GetTag(id);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
 
-            if (size == null)
+            if (tag == null)
             {
                 TempData["AlertType"] = ActionTypes.Error.ToString();
-                return RedirectToAction("ListSize", "Size");
+                return RedirectToAction("ListTags", "Tag");
             }
             else
             {
-                return View(size);
+                return View(tag);
             }
         }
 
         [HttpPost]
-        public IActionResult UpdateSize(Size size)
+        public IActionResult UpdateTag(Tag tag)
         {
             try
             {
                 ViewBag.IsModelStateValid = false;
                 if (ModelState.IsValid)
                 {
-                    size = sizeService.UpdateSize(size);
+                    tag = tagService.UpdateTag(tag);
                     ViewBag.IsModelStateValid = true;
                     TempData["AlertType"] = ActionTypes.Update.ToString();
                 }
@@ -122,27 +122,27 @@ namespace Web.Controllers
 
             if (ViewBag.IsModelStateValid == true)
             {
-                return RedirectToAction("ListSize", "Size");
+                return RedirectToAction("ListTags", "Tag");
             }
             else
             {
-                return View(size);
+                return View(tag);
             }
         }
 
         [HttpGet]
-        public IActionResult ListSize()
+        public IActionResult ListTags()
         {
-            List<Size> size = null;
+            List<Tag> tags = null;
             try
             {
-                size = sizeService.GetSizes();
+                tags = tagService.GetTags();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
-            return View(size);
+            return View(tags);
         }
     }
 }

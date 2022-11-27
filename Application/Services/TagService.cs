@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Models;
@@ -25,12 +26,23 @@ namespace Application.Services
 
         public Tag UpdateTag(Tag tag)
         {
+            tag.UpdateDate = DateTime.Now;
             return tagRepository.UpdateTag(tag);
         }
 
         public List<Tag> GetTags()
         {
             return tagRepository.GetTags();
+        }
+
+        public bool IsTagExist(string name)
+        {
+            return tagRepository.IsTagExist(name);
+        }
+
+        public bool ControlTagIsExistWithParameters(int id, string name)
+        {
+            return tagRepository.ControlTagIsExistWithParameters(id, name);
         }
     }
 }

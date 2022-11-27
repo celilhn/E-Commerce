@@ -9,5 +9,7 @@ namespace Application.Interfaces
         Tag GetTag(int id);
         Tag UpdateTag(Tag tag);
         List<Tag> GetTags();
+        public bool IsTagExist(string name);
+        bool ControlTagIsExistWithParameters(int id, string name);
     }
 }
