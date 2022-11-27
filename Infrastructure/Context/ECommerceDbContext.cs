@@ -20,6 +20,7 @@ namespace Infrastructure.Context
         public DbSet<AdminUser> AdminUsers { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Tag> Tagss { get; set; }
+        public DbSet<Material> Materials { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -39,6 +40,7 @@ namespace Infrastructure.Context
             modelBuilder.ApplyConfiguration(new AdminUserConfigurations());
             modelBuilder.ApplyConfiguration(new SliderConfigurations());
             modelBuilder.ApplyConfiguration(new TagConfigurations());
+            modelBuilder.ApplyConfiguration(new MaterialConfigurations());
         }
     }
 }
