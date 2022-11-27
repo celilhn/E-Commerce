@@ -44,6 +44,7 @@ namespace Infrastructure.Repositories
         {
             return context.Sizes.Where(x => x.Status == status).ToList();
         }
+
         public bool IsSizeExist(string name)
         {
             return context.Sizes.Any(x => x.Name == name && x.Status != StatusCodes.Deleted);
