@@ -1,4 +1,5 @@
-﻿using Application.Utilities;
+﻿using Application.Interfaces;
+using Application.Utilities;
 using Application.ViewModels;
 using FluentValidation;
 
@@ -6,8 +7,10 @@ namespace Application.ValidationRules.FluentValidation.AdminUser
 {
     public class AdminUserAddValidator : AbstractValidator<AdminUserAddDto>
     {
-        public AdminUserAddValidator()
+        private readonly IUserService userService;
+        public AdminUserAddValidator(IUserService userService)
         {
+            this.userService = userService;
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .WithMessage("İsim alanı zorunludur.")
@@ -55,6 +58,14 @@ namespace Application.ValidationRules.FluentValidation.AdminUser
             RuleFor(x => new { x.PhoneNumber })
                 .Must(x => AppUtilities.IsValidPhone(x.PhoneNumber))
                 .WithMessage("Telefon numarası formatı doğru değil!");
+            
+            RuleFor(x => new { x.PhoneNumber })
+                .Must(x => !userService.IsUserExistByPhoneNumber(x.PhoneNumber))
+                .WithMessage("Lütfen farklı bir telefon numarası kullanınız!");
+
+            RuleFor(x => new { x.Email })
+                    .Must(x => !userService.IsUserExistByEmail(x.Email))
+                .WithMessage("Lütfen farklı bir email kullanınız!");
         }
     }
 }
