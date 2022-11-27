@@ -61,7 +61,7 @@ namespace Web.Controllers
             try
             {
                 size = sizeService.GetSize(Id);
-                size.Status = 0;
+                size.Status = StatusCodes.Deleted;
                 sizeService.UpdateSize(size);
                 TempData["AlertType"] = ActionTypes.Delete.ToString();
             }

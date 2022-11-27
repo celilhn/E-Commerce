@@ -77,7 +77,7 @@ namespace Web.Controllers
             try
             {
                 faq = faqService.GetFaq(Id);
-                faq.Status = 0;
+                faq.Status = StatusCodes.Deleted;
                 faqService.UpdateFaq(faq);
                 TempData["AlertType"] = ActionTypes.Delete.ToString();
             }

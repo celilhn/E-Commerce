@@ -1,0 +1,48 @@
+﻿@model Domain.Models.Color;
+@{
+    ViewData["Title"] = "CreateColor";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <!-- end col -->
+
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Renk Oluşturma Sayfası</h4>
+                    <br/>
+                    @if (ViewBag.IsModelStateValid == false)
+                    {
+                        <div class="alert alert-danger" asp-validation-summary="All">
+
+                        </div>
+                    }
+                    <form asp-controller="Color" asp-action="CreateColor">
+                        <div class="form-group">
+                            <label>Renk</label>
+                            <div>
+                                <input type="text" asp-for="Name" name="Name" class="form-control" required placeholder="Renk adı yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                    Kaydet
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->

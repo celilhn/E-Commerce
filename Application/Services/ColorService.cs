@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Models;
@@ -9,45 +8,45 @@ namespace Application.Services
 {
     public class ColorService : IColorService
     {
-        private readonly IColorService colorService;
-        public ColorService(IColorService colorService)
+        private readonly IColorRepository colorRepository;
+        public ColorService(IColorRepository colorRepository)
         {
-            this.colorService = colorService;
+            this.colorRepository = colorRepository;
         }
 
         public Color AddColor(Color color)
         {
-            return colorService.AddColor(color);
+            return colorRepository.AddColor(color);
         }
 
         public Color GetColor(int id)
         {
-            return colorService.GetColor(id);
+            return colorRepository.GetColor(id);
         }
 
         public Color UpdateColor(Color color)
         {
-            return colorService.UpdateColor(color);
+            return colorRepository.UpdateColor(color);
         }
 
         public List<Color> GetColors()
         {
-            return colorService.GetColors();
+            return colorRepository.GetColors();
         }
 
         public List<Color> GetColors(StatusCodes status)
         {
-            return colorService.GetColors(status);
+            return colorRepository.GetColors(status);
         }
 
         public bool IsColorExist(string name)
         {
-            return colorService.IsColorExist(name);
+            return colorRepository.IsColorExist(name);
         }
 
         public bool ControlColorIsExistWithParameters(int id, string name)
         {
-            return colorService.ControlColorIsExistWithParameters(id, name);
+            return colorRepository.ControlColorIsExistWithParameters(id, name);
         }
     }
 }

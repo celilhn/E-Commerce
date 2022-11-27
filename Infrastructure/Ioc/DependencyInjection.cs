@@ -7,6 +7,7 @@ using Application.Mapping;
 using Application.Services;
 using Application.ValidationRules.FluentValidation.AdminUser;
 using Application.ValidationRules.FluentValidation.Brand;
+using Application.ValidationRules.FluentValidation.Color;
 using Application.ValidationRules.FluentValidation.Faq;
 using Application.ValidationRules.FluentValidation.Material;
 using Application.ValidationRules.FluentValidation.Size;
@@ -73,6 +74,7 @@ namespace Infrastructure.Ioc
             services.AddScoped<IValidator<AdminUserUpdateDto>, AdminUserUpdateValidator>();
             services.AddScoped<IValidator<Tag>, TagValidator>();
             services.AddScoped<IValidator<Material>, MaterialValidator>();
+            services.AddScoped<IValidator<Color>, ColorValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
