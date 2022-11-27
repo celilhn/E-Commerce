@@ -5,6 +5,7 @@ using Application.Interfaces;
 using Application.Utilities;
 using Application.ViewModels;
 using AutoMapper;
+using Domain.Constants;
 using Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -71,7 +72,7 @@ namespace Web.Controllers
             try
             {
                 user = userService.GetUser(Id);
-                user.Status = 0;
+                user.Status = Constants.StatusCodes.Deleted;
                 userService.UpdateUser(user);
                 TempData["AlertType"] = SweetAlertTypes.Delete.ToString();
             }

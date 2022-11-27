@@ -9,29 +9,29 @@ using static Domain.Constants.Constants;
 namespace Web.Controllers
 {
     [AdminAuthorize(AdminUserTypes.Admin)]
-    public class MaterialController : Controller
+    public class ColorController : Controller
     {
-        private readonly IMaterialService materialService;
+        private readonly IColorService colorService;
 
-        public MaterialController(IMaterialService materialService)
+        public ColorController(IColorService colorService)
         {
-            this.materialService = materialService;
+            this.colorService = colorService;
         }
 
         [HttpGet]
-        public IActionResult CreateMaterial()
+        public IActionResult CreateColor()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateMaterial(Material material)
+        public IActionResult CreateColor(Color color)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    materialService.AddMaterial(material);
+                    colorService.AddColor(color);
                     TempData["AlertType"] = ActionTypes.Create.ToString();
                 }
                 else
@@ -45,24 +45,24 @@ namespace Web.Controllers
                 Console.WriteLine(ex);
             }
 
-            if (material.Id > 0)
+            if (color.Id > 0)
             {
-                return RedirectToAction("ListMaterial", "Material");
+                return RedirectToAction("ListColor", "Color");
             }
             else
             {
-                return View(material);
+                return View(color);
             }
         }
 
-        public ActionResult DeleteMaterial(int Id)
+        public ActionResult DeleteColor(int Id)
         {
-            Material material = null;
+            Color color = null;
             try
             {
-                material = materialService.GetMaterial(Id);
-                material.Status = StatusCodes.Deleted;
-                materialService.UpdateMaterial(material);
+                color = colorService.GetColor(Id);
+                color.Status = StatusCodes.Deleted;
+                colorService.UpdateColor(color);
                 TempData["AlertType"] = ActionTypes.Delete.ToString();
             }
             catch (Exception ex)
@@ -70,41 +70,41 @@ namespace Web.Controllers
                 TempData["AlertType"] = ActionTypes.Error.ToString();
                 Console.WriteLine(ex);
             }
-            return RedirectToAction("ListMaterial", "Material");
+            return RedirectToAction("ListColor", "Color");
         }
 
         [HttpGet]
-        public IActionResult UpdateMaterial(int Id)
+        public IActionResult UpdateColor(int Id)
         {
-            Material material = null;
+            Color color = null;
             try
             {
-                material = materialService.GetMaterial(Id);
+                color = colorService.GetColor(Id);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
 
-            if (material == null)
+            if (color == null)
             {
                 TempData["AlertType"] = ActionTypes.Error.ToString();
-                return RedirectToAction("ListMaterial", "Material");
+                return RedirectToAction("ListColor", "Color");
             }
             else
             {
-                return View(material);
+                return View(color);
             }
         }
 
         [HttpPost]
-        public IActionResult UpdateMaterial(Material material)
+        public IActionResult UpdateColor(Color color)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    material = materialService.UpdateMaterial(material);
+                    color = colorService.UpdateColor(color);
                     TempData["AlertType"] = ActionTypes.Update.ToString();
                 }
                 else
@@ -120,28 +120,28 @@ namespace Web.Controllers
 
             if (ViewBag.IsModelStateValid == null)
             {
-                return RedirectToAction("ListMaterial", "Material");
+                return RedirectToAction("ListColor", "Color");
             }
             else
             {
-                return View(material);
+                return View(color);
             }
         }
 
         [HttpGet]
-        public IActionResult ListMaterial()
+        public IActionResult ListColor()
         {
-            List<Material> materials = null;
+            List<Color> colors = null;
             try
             {
-                materials = materialService.GetMaterials();
+                colors = colorService.GetColors();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            return View(materials);
+            return View(colors);
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Web.Controllers
             try
             {
                 brand = brandService.GetBrand(Id);
-                brand.Status = 0;
+                brand.Status = StatusCodes.Deleted;
                 brandService.UpdateBrand(brand);
                 TempData["AlertType"] = ActionTypes.Delete.ToString();
             }
