@@ -18,12 +18,12 @@ namespace Application.ValidationRules.FluentValidation.Brand
             RuleFor(x => new { x.Name })
                 .Must(x => !brandService.IsBrandExist(x.Name))
                 .When(x => x.Id == 0)
-                .WithMessage("Aynı size'dan sadece bir adet kayıt edilebilir!");
+                .WithMessage("Aynı markadan sadece bir adet kayıt edilebilir!");
 
             RuleFor(x => new { x.Id, x.Name })
                 .Must(x => brandService.ControlBrandIsExistWithParameters(x.Id, x.Name))
                 .When(x => x.Id != 0)
-                .WithMessage("Aynı size'dan sadece bir adet kayıt edilebilir!");
+                .WithMessage("Aynı markadan sadece bir adet kayıt edilebilir!");
         }
     }
 }

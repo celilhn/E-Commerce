@@ -80,6 +80,26 @@ namespace Application.Services
             return uniqueFileName;
         }
 
+        public bool IsUserExistByPhoneNumber(string phoneNumber)
+        {
+            return userRepository.IsUserExistByPhoneNumber(phoneNumber);
+        }
+
+        public bool IsUserExistByEmail(string email)
+        {
+            return userRepository.IsUserExistByEmail(email);
+        }
+
+        public bool ControlUserIsExistWithPhoneNumber(int id, string phoneNumber)
+        {
+            return userRepository.ControlUserIsExistWithPhoneNumber(id, phoneNumber);
+        }
+
+        public bool ControlUserIsExistWithEmail(int id, string email)
+        {
+            return userRepository.ControlUserIsExistWithEmail(id, email);
+        }
+
         private string GetUniqueFileName(string fileName)
         {
             fileName = Path.GetFileName(fileName);

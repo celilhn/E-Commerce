@@ -12,5 +12,9 @@ namespace Domain.Interfaces
         User GetUser(string email, string password);
         List<User> GetUsers();
         List<User> GetUsers(StatusCodes status);
+        bool IsUserExistByPhoneNumber(string phoneNumber);
+        bool IsUserExistByEmail(string email);
+        bool ControlUserIsExistWithPhoneNumber(int id, string phoneNumber);
+        bool ControlUserIsExistWithEmail(int id, string email);
     }
 }
