@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Filters;
 using Application.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using static Domain.Constants.Constants;
 
 namespace Web.Controllers
 {
+    [AdminAuthorize(AdminUserTypes.Admin)]
     public class SizeController : Controller
     {
         private readonly ISizeService sizeService;
@@ -100,9 +102,11 @@ namespace Web.Controllers
         {
             try
             {
+                ViewBag.IsModelStateValid = false;
                 if (ModelState.IsValid)
                 {
                     size = sizeService.UpdateSize(size);
+                    ViewBag.IsModelStateValid = true;
                     TempData["AlertType"] = ActionTypes.Update.ToString();
                 }
                 else
@@ -116,7 +120,7 @@ namespace Web.Controllers
                 Console.WriteLine(ex);
             }
 
-            if (ViewBag.IsModelStateValid == null)
+            if (ViewBag.IsModelStateValid == true)
             {
                 return RedirectToAction("ListSize", "Size");
             }

@@ -1,0 +1,94 @@
+﻿@model Application.ViewModels.AdminUserAddDto;
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "CreateAdminUser";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <!-- end col -->
+
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Panel Kullanıcısı Oluşturma Sayfası</h4>
+                    <br/>
+                    @if (ViewBag.IsModelStateValid == false)
+                    {
+                        <div class="alert alert-danger" asp-validation-summary="All">
+
+                        </div>
+                    }
+                    <form asp-controller="AdminUser" asp-action="CreateAdminUser" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Ad</label>
+                            <div>
+                                <input type="text" asp-for="Name" name="Name" class="form-control" required placeholder="Ad yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Soyad</label>
+                            <div>
+                                <input type="text" asp-for="Surname" name="Surname" class="form-control" required placeholder="Soyad yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon Numarası</label>
+                            <div>
+                                <input type="text" asp-for="PhoneNumber" name="PhoneNumber" class="form-control" required placeholder="Telefon numarası yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <div>
+                                <input type="email" asp-for="Email" name="Email" class="form-control" required placeholder="E-mail yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Parola</label>
+                            <div>
+                                <input type="password" asp-for="Password" name="Password" class="form-control" required placeholder="Parola yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Parola</label>
+                            <div>
+                                <input type="password" asp-for="RePassword" name="RePassword" class="form-control" required placeholder="Parola yazınız" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Fotoğraf</label>
+                            <div class="fallback">
+                                <input name="file" type="file">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Kullanıcı Tipi</label>
+                            <div>
+                                <select asp-for="AdminUserType" class="form-control" name="UserType" asp-items="Html.GetEnumSelectList<AdminUserTypes>()">
+                                    <option selected="selected" value="-1">Lütfen Seçiniz</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                    Kaydet
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->
+

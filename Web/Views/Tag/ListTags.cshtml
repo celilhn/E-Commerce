@@ -1,0 +1,81 @@
+﻿@using Domain.Models
+@using static Domain.Constants.Constants
+@model List<Domain.Models.Tag>
+@{
+    ViewData["Title"] = "ListTags";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Tag Listesi</h4>
+                    <p class="sub-title">
+                    </p>
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Güncelleme Tarihi</th>
+                                <th>Durumu</th>
+                                <th>Tag</th>
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Tag tag in Model)
+                            {
+                                <tr>
+                                    <td>@tag.Id</td>
+                                    <td>@tag.InsertionDate</td>
+                                    <td>@tag.UpdateDate</td>
+                                    <td>@tag.Status</td>
+                                    <td>@tag.Name</td>
+                                    <th>
+                                        <div>
+                                            <form asp-action="DeleteTag" method="post" asp-controller="Tag" asp-route-id="@tag.Id" id="form_@tag.Id">
+                                                <a onclick="return functionConfirm(@tag.Id)"><i class="fas fa-edit"></i></a>
+                                            </form>
+                                        </div>
+                                    </th>
+                                    <th><a asp-controller="Tag" asp-action="UpdateTag" asp-route-id="@tag.Id"><i class="fas fa-edit"></i></a></th> 
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->
+
+<script>
+    function functionConfirm(id) {
+        swal({
+                title: "Silmek istediğinize emin misiniz??",
+                text: "Bir kez silindiğinde, bu dosyayı kurtaramayacaksınız!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $("#form_" + id).submit();
+                } else {
+                    swal("Dosyanız güvende!");
+                }
+            });
+    }
+</script> 

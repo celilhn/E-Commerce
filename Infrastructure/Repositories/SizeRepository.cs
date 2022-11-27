@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Domain.Constants;
 using Domain.Interfaces;
 using Domain.Models;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using static Domain.Constants.Constants;
 
 namespace Infrastructure.Repositories
 {
@@ -37,12 +37,22 @@ namespace Infrastructure.Repositories
 
         public List<Size> GetSizes()
         {
-            return context.Sizes.ToList();
+            return context.Sizes.Where(x=>x.Status != StatusCodes.Deleted).ToList();
         }
 
-        public List<Size> GetSizes(Constants.StatusCodes status)
+        public List<Size> GetSizes(StatusCodes status)
         {
             return context.Sizes.Where(x => x.Status == status).ToList();
+        }
+
+        public bool IsSizeExist(string name)
+        {
+            return context.Sizes.Any(x => x.Name == name && x.Status != StatusCodes.Deleted);
+        }
+
+        public bool ControlSizeIsExistWithParameters(int id, string name)
+        {
+            return context.Sizes.Any(x => x.Id == id && x.Name == name && x.Status != StatusCodes.Deleted);
         }
     }
 }

@@ -20,9 +20,14 @@
     <!-- DataTables -->
     <link href="~/Panel/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Panel/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Dropzone css -->
+    <link href="~/Panel/assets/plugins/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css">
 
     <!-- Responsive datatable examples -->
     <link href="~/Panel/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    
+    <link href="~/Panel/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
 </head>
 
@@ -440,6 +445,32 @@
                                     <li><a asp-controller="Size" asp-action="ListSize">Size Listesi</a></li>
                                 </ul>
                             </li>
+                            
+                            <li class="has-submenu">
+                                <a href="#"><i class="dripicons-to-do"></i>Kullanıcı </a>
+                                <ul class="submenu">
+                                    <li><a asp-controller="User" asp-action="CreateUser">Kullanıcı Oluştur</a></li>
+                                    <li><a asp-controller="User" asp-action="ListUsers">Kullanıcı Listesi</a></li>
+                                    <li><a asp-controller="LoginLog" asp-action="ListUserLoginLog">Kullanıcı Login Logları</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="has-submenu">
+                                <a href="#"><i class="dripicons-to-do"></i>Panel Kullanıcı </a>
+                                <ul class="submenu">
+                                    <li><a asp-controller="AdminUser" asp-action="CreateAdminUser">Panel Kullanıcı Oluştur</a></li>
+                                    <li><a asp-controller="AdminUser" asp-action="ListAdminUsers">Panel Kullanıcı Listesi</a></li>
+                                    <li><a asp-controller="LoginLog" asp-action="ListAdminUserLoginLog">Panel Kullanıcı Login Logları</a></li>
+                                </ul>
+                            </li>
+                            
+                        <li class="has-submenu">
+                            <a href="#"><i class="dripicons-to-do"></i>Tag </a>
+                            <ul class="submenu">
+                                <li><a asp-controller="Tag" asp-action="CreateTag">Tag Oluştur</a></li>
+                                <li><a asp-controller="Tag" asp-action="ListTags">Tag Listesi</a></li>
+                            </ul>
+                        </li>
 
                         </ul>
                         <!-- End navigation menu -->
@@ -502,6 +533,16 @@
     <!-- Datatable init js -->
     <script src="~/Panel/assets/pages/datatables.init.js"></script>
 
+    <!-- Dropzone js -->
+    <script src="~/Panel/assets/plugins/dropzone/dist/dropzone.js"></script>
+
+    <!-- Alertify js -->
+    <script src="~/Panel/assets/plugins/alertify/js/alertify.js"></script>
+    <script src="~/Panel/assets/pages/alertify-init.js"></script>
+
+    <script src="~/Panel/assets/plugins/apexchart/apexcharts.min.js"></script>
+    <script src="~/Panel/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Panel/assets/plugins/tinymce/tinymce.min.js"></script>
     @if (TempData["AlertType"] != null)
     {
         @if (TempData["AlertType"].ToString() == ActionTypes.Create.ToString())
@@ -518,7 +559,7 @@
         {
             <script>
                 swal({
-                    title: "Update process successful!",
+                    title: @TempData["AlertType"].ToString() +"Update process successful!",
                     text: "",
                     icon: "success"
                 });

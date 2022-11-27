@@ -5,9 +5,13 @@ using Application.Utilities;
 using Application.Logging;
 using Application.Mapping;
 using Application.Services;
+using Application.ValidationRules.FluentValidation.AdminUser;
 using Application.ValidationRules.FluentValidation.Brand;
 using Application.ValidationRules.FluentValidation.Faq;
 using Application.ValidationRules.FluentValidation.Size;
+using Application.ValidationRules.FluentValidation.Tag;
+using Application.ValidationRules.FluentValidation.User;
+using Application.ViewModels;
 using AutoMapper;
 using Domain.Interfaces;
 using Domain.Models;
@@ -42,10 +46,27 @@ namespace Infrastructure.Ioc
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<ISizeService, SizeService>();
             services.AddScoped<ISizeRepository, SizeRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILoginLogService, LoginLogService>();
+            services.AddScoped<ILoginLogRepository, LoginLogRepository>();
+            services.AddScoped<IAdminUserService, AdminUserService>();
+            services.AddScoped<IAdminUserRepository, AdminUserRepository>();
+            services.AddScoped<ISliderService, SliderService>();
+            services.AddScoped<ISliderRepository, SliderRepository>();
+            services.AddScoped<ITagService, TagService>();
+            services.AddScoped<ITagRepository, TagRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();
             services.AddScoped<IValidator<Size>, SizeValidator>();
+            services.AddScoped<IValidator<UserAddDto>, UserAddValidator>();
+            services.AddScoped<IValidator<UserUpdateDto>, UserUpdateValidator>();
+            services.AddScoped<IValidator<UserLoginDto>, UserLoginValidator>();
+            services.AddScoped<IValidator<UserRegisterDto>, UserRegisterValidator>();
+            services.AddScoped<IValidator<AdminUserAddDto>, AdminUserAddValidator>();
+            services.AddScoped<IValidator<AdminUserUpdateDto>, AdminUserUpdateValidator>();
+            services.AddScoped<IValidator<Tag>, TagValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

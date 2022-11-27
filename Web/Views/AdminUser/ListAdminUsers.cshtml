@@ -1,0 +1,67 @@
+﻿@using Domain.Models
+@using static Domain.Constants.Constants
+@model List<Domain.Models.AdminUser>
+@{
+    ViewData["Title"] = "ListAdminUsers";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Panel Kullanıcı Listesi</h4>
+                    <p class="sub-title">
+                    </p>
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Durumu</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Telefon numarası</th>
+                                <th>Email</th>
+                                <th>Kullanıcı Tipi</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (AdminUser adminUser in Model)
+                            {
+                                <tr>
+                                    <td>@adminUser.Id</td>
+                                    <td>@adminUser.InsertionDate</td>
+                                    <td>@adminUser.Status</td>
+                                    <td>@adminUser.Name</td>
+                                    <td>@adminUser.Surname</td>
+                                    <td>@adminUser.PhoneNumber</td>
+                                    <td>@adminUser.Email</td>
+                                    <td>@adminUser.UserType</td>
+                                    <td>@adminUser.Name</td>
+                                    <th>
+                                        @if (adminUser.Status == StatusCodes.Active)
+                                        {
+                                            <a asp-controller="AdminUser" asp-action="DeleteAdminUser" asp-route-Id="@adminUser.Id"><i class="dripicons-document-delete"></i></a>
+                                        }
+                                    </th>
+                                    <th><a asp-controller="AdminUser" asp-action="UpdateAdminUser" asp-route-Id="@adminUser.Id"><i class="fas fa-edit"></i></a></th> 
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->

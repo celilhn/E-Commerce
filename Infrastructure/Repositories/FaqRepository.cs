@@ -37,7 +37,7 @@ namespace Infrastructure.Repositories
 
         public List<Faq> GetFags()
         {
-            return context.Faqs.ToList();
+            return context.Faqs.Where(x=>x.Status!= StatusCodes.Deleted).ToList();
         }
 
         public List<Faq> GetFags(StatusCodes status)

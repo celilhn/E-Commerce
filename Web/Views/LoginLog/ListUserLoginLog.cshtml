@@ -1,0 +1,52 @@
+﻿@using Domain.Models
+@using static Domain.Constants.Constants
+@model List<Domain.Models.LoginLog>
+@{
+    ViewData["Title"] = "ListUserLoginLog";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Kullanıcı Login Listesi</h4>
+                    <p class="sub-title">
+                    </p>
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Login Tarihi</th>
+                                <th>E-mail</th>
+                                <th>Hashli Parola</th>
+                                <th>Login Durumu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (LoginLog userLoginLog in Model)
+                            {
+                                <tr>
+                                    <td>@userLoginLog.Id</td>
+                                    <td>@userLoginLog.InsertionDate</td>
+                                    <td>@userLoginLog.Email</td>
+                                    <td>@userLoginLog.HashPassword</td>
+                                    <td>@userLoginLog.LoginStatus</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->

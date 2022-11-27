@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Filters;
 using Application.Interfaces;
-using Domain.Constants;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using static Domain.Constants.Constants;
 
 namespace Web.Controllers
 {
+    [AdminAuthorize(AdminUserTypes.Admin)]
     public class BrandController : Controller
     {
         private readonly IBrandService brandService;

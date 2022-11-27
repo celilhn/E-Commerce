@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using static Domain.Constants.Constants;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -149,7 +150,7 @@
                                                 <h4 class="mega-menu-title">Other Pages</h4>
                                                 <ul class="mb-n2">
                                                     <li><a href="my-account.html">My Account</a></li>
-                                                    <li><a href="login-register.html">Loging | Register</a></li>
+                                                    <li><a asp-controller="Login" asp-action="Login">Loging | Register</a></li>
                                                     <li><a href="wishlist.html">Wishlist</a></li>
                                                     <li><a href="cart.html">Cart</a></li>
                                                     <li><a href="checkout.html">Checkout</a></li>
@@ -192,7 +193,7 @@
                                 <!-- Search Header Action Button End -->
 
                                 <!-- User Account Header Action Button Start -->
-                                <a href="login-register.html" class="header-action-btn d-none d-md-block"><i class="pe-7s-user"></i></a>
+                                <a asp-controller="Login" asp-action="Login" class="header-action-btn d-none d-md-block"><i class="pe-7s-user"></i></a>
                                 <!-- User Account Header Action Button End -->
 
                                 <!-- Wishlist Header Action Button Start -->
@@ -288,7 +289,7 @@
                                     <li><a href="faq.html">Faq</a></li>
                                     <li><a href="404-error.html">Error 404</a></li>
                                     <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="login-register.html">Loging | Register</a></li>
+                                    <li><a asp-controller="Login" asp-action="Login">Loging | Register</a></li>
                                 </ul>
                             </li>
                             <li class="has-children">
@@ -647,7 +648,50 @@
 
     <!--Main JS-->
     <script src="~/Web/assets/js/main.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (TempData["AlertType"] != null)
+    {
+        @if (TempData["AlertType"].ToString() == SweetAlertTypes.Error.ToString())
+        {
+            <script>
+                swal({
+                    title: "Bir hata oluştu!",
+                    text: "",
+                    icon: "error"
+                });
+            </script>
+        } 
+        else if (TempData["AlertType"].ToString() == SweetAlertTypes.UserEmailPassWordInCorrect.ToString())
+        {
+            <script>
+                swal({
+                    title: "Kullanıcı adı veya şifreniz hatalı!",
+                    text: "",
+                    icon: "error"
+                });
+            </script>
+        }
+        else if (TempData["AlertType"].ToString() == SweetAlertTypes.Register.ToString())
+        {
+            <script>
+                swal({
+                    title: "Kullanıcı kaydı başarılı!",
+                    text: "",
+                    icon: "success"
+                });
+            </script>
+        }
+        else if (TempData["AlertType"].ToString() == SweetAlertTypes.Login.ToString())
+        {
+            <script>
+                swal({
+                    title: "Giriş başarılı!",
+                    text: "",
+                    icon: "success"
+                });
+            </script>
+        }
+    }
 </body>
 
 </html>

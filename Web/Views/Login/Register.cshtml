@@ -1,0 +1,123 @@
+﻿@model Application.ViewModels.UserRegisterDto;
+@using static Domain.Constants.Constants;
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumb Section Start -->
+<div class="section">
+
+    <!-- Breadcrumb Area Start -->
+    <div class="breadcrumb-area bg-light">
+        <div class="container-fluid">
+            <div class="breadcrumb-content text-center">
+                <h1 class="title">Kayıt</h1>
+                <ul>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Anasayfa </a>
+                    </li>
+                    <li class="active">Kayıt</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Area End -->
+
+</div>
+<!-- Breadcrumb Section End -->
+
+<!-- Login | Register Section Start -->
+<div class="section section-margin">
+    <div class="container">
+
+        <div class="row mb-n10">
+            <div class="col-lg-3 col-md-2 m-auto m-lg-0 pb-0"></div>
+            <div class="col-lg-6 col-md-8 m-auto m-lg-0 pb-10">
+                <!-- Login Wrapper Start -->
+                <div class="login-wrapper">
+
+                    <!-- Login Title & Content Start -->
+                    <div class="section-content text-center mb-5">
+                        <h2 class="title mb-2">Kayıt</h2>
+                        <p class="desc-content">Lütfen aşağıdaki bilgileri doldurarak üye olunuz.</p>
+                    </div>
+                    <!-- Login Title & Content End -->
+
+                    <!-- Form Action Start -->
+                    <form class="form-horizontal mt-6" asp-controller="Login" asp-action="Register">
+
+                        <!-- Input Email Start -->
+                        <div class="single-input-item mb-3">
+                            <input type="text" asp-for="Name" name="Name" required="" placeholder="İsim">
+                        </div>
+                        <!-- Input Email End -->
+
+                        <!-- Input Password Start -->
+                        <div class="single-input-item mb-3">
+                            <input type="text" asp-for="Surname" name="Surname" required="" placeholder="Soyad">
+                        </div>
+                        <!-- Input Password End -->
+                        
+                        <!-- Input Password Start -->
+                        <div class="single-input-item mb-3">
+                            <input type="text" asp-for="UserName" name="UserName" required="" placeholder="Kullanıcı Adı">
+                        </div>
+                        <!-- Input Password End -->
+                        
+                        <!-- Input Password Start -->
+                        <div class="single-input-item mb-3">
+                            <input type="email" asp-for="Email" name="Email" required="" placeholder="Email">
+                        </div>
+                        <!-- Input Password End -->
+                        
+                        <!-- Input Password Start -->
+                        <div class="single-input-item mb-3">
+                            <input type="password" asp-for="Password" name="Password" required="" placeholder="Parola">
+                        </div>
+                        <!-- Input Password End -->
+                        
+                        <!-- Input Password Start -->
+                        <div class="single-input-item mb-3">
+                            <input type="password" asp-for="RePassword" name="RePassword" required="" placeholder="Parola">
+                        </div>
+                        <!-- Input Password End -->
+
+                        <!-- Checkbox/Forget Password Start -->
+                        <div class="single-input-item mb-3">
+                            <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
+                                <div class="remember-meta mb-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="rememberMe">
+                                        <label class="custom-control-label" for="rememberMe">Remember Me</label>
+                                    </div>
+                                </div>
+                                <a href="#" class="forget-pwd mb-3">Şifreni mi unuttun?</a>
+                            </div>
+                        </div>
+                        <!-- Checkbox/Forget Password End -->
+
+                        <!-- Login Button Start -->
+                        <div class="single-input-item mb-3">
+                            <button class="btn btn btn-dark btn-hover-primary rounded-0">Kayıt</button>
+                        </div>
+                        <!-- Login Button End -->
+
+                        <!-- Lost Password & Creat New Account Start -->
+                        <div class="lost-password">
+                            <a asp-controller="Login" asp-action="Login">Giriş</a>
+                        </div>
+                        <!-- Lost Password & Creat New Account End -->
+
+                    </form>
+                    <!-- Form Action End -->
+
+                </div>
+                <!-- Login Wrapper End -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Login | Register Section End -->
+

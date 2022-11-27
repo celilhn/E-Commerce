@@ -1,0 +1,69 @@
+﻿@using Domain.Models
+@using static Domain.Constants.Constants
+@model List<Domain.Models.User>
+@{
+    ViewData["Title"] = "ListUsers";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">Kullanıcı Listesi</h4>
+                    <p class="sub-title">
+                    </p>
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Durumu</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Kullanıcı Adı</th>
+                                <th>Email</th>
+                                <th>Telefon Numarası</th>
+                                <th>Kullanıcı Tipi</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (User user in Model)
+                            {
+                                <tr>
+                                    <td>@user.Id</td>
+                                    <td>@user.InsertionDate</td>
+                                    <td>@user.Status</td>
+                                    <td>@user.Name</td>
+                                    <td>@user.Surname</td>
+                                    <td>@user.UserName</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.PhoneNumber</td>
+                                    <td>@user.UserType</td>
+                                    <td>@user.Name</td>
+                                    <th>
+                                        @if (user.Status == StatusCodes.Active)
+                                        {
+                                            <a asp-controller="User" asp-action="DeleteUser" asp-route-Id="@user.Id"><i class="dripicons-document-delete"></i></a>
+                                        }
+                                    </th>
+                                    <th><a asp-controller="User" asp-action="UpdateUser" asp-route-Id="@user.Id"><i class="fas fa-edit"></i></a></th> 
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- end container-fluid -->
