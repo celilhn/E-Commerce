@@ -59,6 +59,8 @@ namespace Infrastructure.Ioc
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<IMaterialService, MaterialService>();
             services.AddScoped<IMaterialRepository, MaterialRepository>();
+            services.AddScoped<IColorService, ColorService>();
+            services.AddScoped<IColorRepository, ColorRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();

@@ -21,6 +21,7 @@ namespace Infrastructure.Context
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Tag> Tagss { get; set; }
         public DbSet<Material> Materials { get; set; }
+        public DbSet<Color> Colors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,6 +42,7 @@ namespace Infrastructure.Context
             modelBuilder.ApplyConfiguration(new SliderConfigurations());
             modelBuilder.ApplyConfiguration(new TagConfigurations());
             modelBuilder.ApplyConfiguration(new MaterialConfigurations());
+            modelBuilder.ApplyConfiguration(new ColorConfigurations());
         }
     }
 }
