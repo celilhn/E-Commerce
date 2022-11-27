@@ -38,7 +38,7 @@ namespace Infrastructure.Repositories
 
         public List<Brand> GetBrands()
         {
-            return context.Brands.ToList();
+            return context.Brands.Where(x=>x.Status!= StatusCodes.Deleted).ToList();
         }
 
         public List<Brand> GetBrands(StatusCodes status)

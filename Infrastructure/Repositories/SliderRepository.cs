@@ -38,7 +38,7 @@ namespace Infrastructure.Repositories
 
         public List<Slider> GetSliders()
         {
-            return context.Sliders.ToList();
+            return context.Sliders.Where(x=>x.Status != StatusCodes.Deleted).ToList();
         }
 
         public List<Slider> GetSliders(StatusCodes statusCodes)

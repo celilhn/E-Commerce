@@ -37,12 +37,12 @@ namespace Infrastructure.Repositories
 
         public AdminUser GetAdminUser(string email, string password)
         {
-            return context.AdminUsers.SingleOrDefault(x => x.Email == email && x.Password == password);
+            return context.AdminUsers.SingleOrDefault(x => x.Email == email && x.Password == password && x.Status != StatusCodes.Deleted);
         }
 
         public List<AdminUser> GetAdminUsers()
         {
-            return context.AdminUsers.ToList();
+            return context.AdminUsers.Where(x=>x.Status != StatusCodes.Deleted).ToList();
         }
 
         public List<AdminUser> GetAdminUsers(StatusCodes status)

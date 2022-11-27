@@ -24,7 +24,7 @@ namespace Infrastructure.Repositories
 
         public List<LoginLog> GetUserLoginLogs(LoginTypes loginType)
         {
-            return context.LoginLogs.Where(x=>x.LoginType == loginType).ToList();
+            return context.LoginLogs.Where(x=>x.LoginType == loginType && x.Status != StatusCodes.Deleted).ToList();
         }
     }
 }
