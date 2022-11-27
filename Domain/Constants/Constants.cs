@@ -22,7 +22,8 @@ namespace Domain.Constants
         public enum StatusCodes
         {
             Passive = 0,
-            Active = 1
+            Active = 1,
+            Deleted = 2,
         }
 		
         public enum ActionTypes

@@ -1,9 +1,8 @@
-﻿@model Domain.Models.Size;
+﻿@model Domain.Models.Tag;
 @{
-    ViewData["Title"] = "CreateSize";
+    ViewData["Title"] = "CreateTag";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
 }
-
 
 <div class="container-fluid">
 
@@ -22,11 +21,11 @@
 
                         </div>
                     }
-                    <form asp-controller="Size" asp-action="CreateSize">
+                    <form asp-controller="Tag" asp-action="CreateTag">
                         <div class="form-group">
-                            <label>Size</label>
+                            <label>Tag</label>
                             <div>
-                                <input type="text" asp-for="Name" name="Name" class="form-control" required placeholder="Size yazınız" />
+                                <input type="text" asp-for="Name" name="Name" class="form-control" required placeholder="Tag yazınız" />
                             </div>
                         </div>
                         <div class="form-group mb-0">

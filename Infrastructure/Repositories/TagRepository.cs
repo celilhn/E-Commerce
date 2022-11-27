@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using Domain.Models;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using static Domain.Constants.Constants;
 
 namespace Infrastructure.Repositories
 {
@@ -36,7 +37,17 @@ namespace Infrastructure.Repositories
 
         public List<Tag> GetTags()
         {
-            return context.Tagss.ToList();
+            return context.Tagss.Where(x=>x.Status != StatusCodes.Deleted).ToList();
+        }
+
+        public bool IsTagExist(string name)
+        {
+            return context.Tagss.Any(x => x.Name == name && x.Status != StatusCodes.Deleted);
+        }
+
+        public bool ControlTagIsExistWithParameters(int id, string name)
+        {
+            return context.Tagss.Any(x => x.Id == id && x.Name == name && x.Status != StatusCodes.Deleted);
         }
     }
 }
