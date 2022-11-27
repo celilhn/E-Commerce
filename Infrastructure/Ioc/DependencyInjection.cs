@@ -8,6 +8,7 @@ using Application.Services;
 using Application.ValidationRules.FluentValidation.AdminUser;
 using Application.ValidationRules.FluentValidation.Brand;
 using Application.ValidationRules.FluentValidation.Faq;
+using Application.ValidationRules.FluentValidation.Material;
 using Application.ValidationRules.FluentValidation.Size;
 using Application.ValidationRules.FluentValidation.Tag;
 using Application.ValidationRules.FluentValidation.User;
@@ -56,6 +57,8 @@ namespace Infrastructure.Ioc
             services.AddScoped<ISliderRepository, SliderRepository>();
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<IMaterialService, MaterialService>();
+            services.AddScoped<IMaterialRepository, MaterialRepository>();
 
             services.AddScoped<IValidator<Faq>, FaqValidator>();
             services.AddScoped<IValidator<Brand>, BrandValidator>();
@@ -67,6 +70,7 @@ namespace Infrastructure.Ioc
             services.AddScoped<IValidator<AdminUserAddDto>, AdminUserAddValidator>();
             services.AddScoped<IValidator<AdminUserUpdateDto>, AdminUserUpdateValidator>();
             services.AddScoped<IValidator<Tag>, TagValidator>();
+            services.AddScoped<IValidator<Material>, MaterialValidator>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

@@ -1,8 +1,8 @@
 ﻿@using Domain.Models
 @using static Domain.Constants.Constants
-@model List<Domain.Models.Brand>
+@model List<Domain.Models.Material>
 @{
-    ViewData["Title"] = "ListBrand";
+    ViewData["Title"] = "ListMaterial";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
 }
 
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="mt-0 header-title">Markalar Listesi</h4>
+                    <h4 class="mt-0 header-title">Materyal Listesi</h4>
                     <p class="sub-title">
                     </p>
 
@@ -24,27 +24,27 @@
                                 <th>Kayıt Tarihi</th>
                                 <th>Güncelleme Tarihi</th>
                                 <th>Durumu</th>
-                                <th>Marka</th>
+                                <th>Materyal</th>
                                 <th>Sil</th>
                                 <th>Güncelle</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (Brand brand in Model)
+                            @foreach (Material material in Model)
                             {
                                 <tr>
-                                    <td>@brand.Id</td>
-                                    <td>@brand.InsertionDate</td>
-                                    <td>@brand.UpdateDate</td>
-                                    <td>@brand.Status</td>
-                                    <td>@brand.Name</td>
+                                    <td>@material.Id</td>
+                                    <td>@material.InsertionDate</td>
+                                    <td>@material.UpdateDate</td>
+                                    <td>@material.Status</td>
+                                    <td>@material.Name</td>
                                     <th>
-                                        @if (brand.Status == StatusCodes.Active)
+                                        @if (material.Status == StatusCodes.Active)
                                         {
-                                            <a asp-controller="Brand" asp-action="DeleteBrand" asp-route-Id="@brand.Id"><i class="dripicons-document-delete"></i></a>
+                                            <a asp-controller="Material" asp-action="DeleteMaterial" asp-route-Id="@material.Id"><i class="dripicons-document-delete"></i></a>
                                         }
                                     </th>
-                                    <th><a asp-controller="Brand" asp-action="UpdateBrand" asp-route-Id="@brand.Id"><i class="fas fa-edit"></i></a></th> 
+                                    <th><a asp-controller="Material" asp-action="UpdateMaterial" asp-route-Id="@material.Id"><i class="fas fa-edit"></i></a></th> 
                                 </tr>
                             }
                         </tbody>
