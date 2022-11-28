@@ -21,7 +21,7 @@ namespace Application.ValidationRules.FluentValidation.Size
                 .WithMessage("Aynı size'dan sadece bir adet kayıt edilebilir!");
 
             RuleFor(x => new { x.Id, x.Name })
-                .Must(x => sizeService.ControlSizeIsExistWithParameters(x.Id, x.Name))
+                .Must(x => sizeService.ControlSizeIsExistWithParameters(x.Id, x.Name) || !sizeService.IsSizeExist(x.Name))
                 .When(x => x.Id != 0)
                 .WithMessage("Aynı size'dan sadece bir adet kayıt edilebilir!");
         }

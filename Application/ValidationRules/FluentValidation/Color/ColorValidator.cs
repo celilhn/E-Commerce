@@ -21,7 +21,7 @@ namespace Application.ValidationRules.FluentValidation.Color
                 .WithMessage("Aynı renkten sadece bir adet kayıt edilebilir!");
 
             RuleFor(x => new { x.Id, x.Name })
-                .Must(x => colorService.ControlColorIsExistWithParameters(x.Id, x.Name))
+                .Must(x => colorService.ControlColorIsExistWithParameters(x.Id, x.Name) || !colorService.IsColorExist(x.Name))
                 .When(x => x.Id != 0)
                 .WithMessage("Aynı renkten sadece bir adet kayıt edilebilir!");
         }

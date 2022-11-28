@@ -21,7 +21,7 @@ namespace Application.ValidationRules.FluentValidation.Tag
                 .WithMessage("Aynı tag'dan sadece bir adet kayıt edilebilir!");
 
             RuleFor(x => new { x.Id, x.Name })
-                .Must(x => tagService.ControlTagIsExistWithParameters(x.Id, x.Name))
+                .Must(x => tagService.ControlTagIsExistWithParameters(x.Id, x.Name) || !tagService.IsTagExist(x.Name))
                 .When(x => x.Id != 0)
                 .WithMessage("Aynı tag'dan sadece bir adet kayıt edilebilir!");
         }

@@ -21,7 +21,7 @@ namespace Application.ValidationRules.FluentValidation.Material
                 .WithMessage("Aynı materyalden sadece bir adet kayıt edilebilir!");
 
             RuleFor(x => new { x.Id, x.Name })
-                .Must(x => materialService.ControlMaterialIsExistWithParameters(x.Id, x.Name))
+                .Must(x => materialService.ControlMaterialIsExistWithParameters(x.Id, x.Name) || !materialService.IsMaterialExist(x.Name))
                 .When(x => x.Id != 0)
                 .WithMessage("Aynı materyalden sadece bir adet kayıt edilebilir!");
         }

@@ -21,7 +21,7 @@ namespace Application.ValidationRules.FluentValidation.Brand
                 .WithMessage("Aynı markadan sadece bir adet kayıt edilebilir!");
 
             RuleFor(x => new { x.Id, x.Name })
-                .Must(x => brandService.ControlBrandIsExistWithParameters(x.Id, x.Name))
+                .Must(x => brandService.ControlBrandIsExistWithParameters(x.Id, x.Name) || !brandService.IsBrandExist(x.Name))
                 .When(x => x.Id != 0)
                 .WithMessage("Aynı markadan sadece bir adet kayıt edilebilir!");
         }

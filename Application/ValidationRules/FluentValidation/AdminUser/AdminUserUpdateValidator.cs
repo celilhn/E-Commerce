@@ -50,11 +50,11 @@ namespace Application.ValidationRules.FluentValidation.AdminUser
                 .WithMessage("Telefon numarası formatı doğru değil!");
             
             RuleFor(x => new { x.Id, x.PhoneNumber })
-                .Must(x => userService.ControlUserIsExistWithPhoneNumber(x.Id, x.PhoneNumber))
+                .Must(x => userService.ControlUserIsExistWithPhoneNumber(x.Id, x.PhoneNumber) || !userService.IsUserExistByPhoneNumber(x.PhoneNumber))
                 .WithMessage("Lütfen farklı bir telefon numarası kullanınız!");
 
             RuleFor(x => new { x.Id, x.Email })
-                .Must(x => userService.ControlUserIsExistWithEmail(x.Id, x.Email))
+                .Must(x => userService.ControlUserIsExistWithEmail(x.Id, x.Email) || !userService.IsUserExistByEmail(x.Email))
                 .WithMessage("Lütfen farklı bir email kullanınız!");
         }
     }
